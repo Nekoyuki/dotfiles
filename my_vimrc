@@ -1,0 +1,159 @@
+" my_vimrc
+" Ver.9
+" ----------------------------------------------
+colorscheme default
+
+set notitle							"Off 'Thanks for flying Vim'
+set showmatch						"On  highlight ()
+
+set tabstop=4						"Tab = blank * 4
+set autoindent						"Tab = blank * 4
+set expandtab						"Tab = blank * 4
+set shiftwidth=4					"Tab = blank * 4
+set softtabstop=4					"Tab = blank * 4
+
+set smartindent						"
+"set list							"On  invisible char
+set mouse=a							"On  mouse
+
+syntax on							"On  syntax highlight
+highlight Normal ctermbg=none ctermfg=black                                " Background color
+"highlight Normal ctermbg=white ctermfg=black                                " Background color
+highlight StatusLine term=none cterm=none ctermfg=grey ctermbg=black
+highlight CursorLine term=none cterm=none ctermfg=none ctermbg=lightgray    " Cursor line color
+"set cursorline                 " On  highlight cursor row
+set nocursorline                " Off highlight cursor row
+autocmd InsertEnter,InsertLeave * set cursorline!       " On  cursor row highlight when insert mode
+"set cursorcolumn               " On  highlight cursor column
+set ruler                       " On  ruler at the bottom to show the cursor location
+set hlsearch                    " On  keyword search highlight
+"set nohlsearch                 " Off keyword search highlight
+
+set number							"On  number
+set laststatus=2                " On  status line always
+set statusline=%F%h%=%p         " Contents of status line
+
+set incsearch						"On  incremental search
+set wildmenu wildmode=list:longest		"On  list of complement result
+"set wildmenu wildmode=list:full		"On  list of complement result
+
+set ignorecase						"On  ignore the difference between large and small char
+set smartcase
+set wrapscan
+
+set nobackup
+set noswapfile
+set nowrap
+
+inoremap <silent> jj <ESC>
+
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-h> <Left>
+inoremap <C-l> <Right>
+
+nnoremap s <Nop>
+nnoremap sc <C-w>c		"close window/tag
+nnoremap sh <C-w>h
+nnoremap sj <C-w>j
+nnoremap sk <C-w>k
+nnoremap sl <C-w>l
+nnoremap sw <C-w>w
+nnoremap s< <C-w><
+nnoremap s> <C-w>>
+nnoremap s+ <C-w>+
+nnoremap s- <C-w>-
+nnoremap <S-d> <C-f>	"scroll down
+nnoremap <S-e> <C-b>	"scroll up
+nnoremap sd <C-]>		"Tag jump, go to tag
+nnoremap sf <C-w>}		"Tag jump, go to tag with preview window
+nnoremap ss <C-t>		"Tag jump, back from tag
+
+nnoremap n nzz			"n + centered
+nnoremap N Nzz
+nnoremap * *zz
+nnoremap # #zz
+nnoremap g* g*zz
+nnoremap g# g#zz
+
+nmap <silent> <Esc><Esc> :nohlsearch<CR>	"Cancel highligh
+
+" NeoBundle
+" ----------------------------------------------
+set nocompatible
+filetype off
+filetype plugin indent off
+
+set runtimepath+=~/.vim/bundle/neobundle.vim
+call neobundle#begin(expand('~/.vim/bundle/'))
+let g:neobundle_default_git_protocol='https'
+
+NeoBundleFetch 'Shougo/neobundle.vim'
+NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'davidhalter/jedi-vim'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'nachumk/systemverilog.vim'
+NeoBundle 'itchyny/lightline.vim'
+NeoBundle 'vim-jp/vimdoc-ja'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tyru/caw.vim.git'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'bronson/vim-trailing-whitespace'
+
+call neobundle#end()
+
+filetype plugin indent on
+
+" Python
+" ----------------------------------------------
+filetype plugin on
+autocmd FileType python setl autoindent
+autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+autocmd FileType python setl expandtab tabstop=4 shiftwidth=4 softtabstop=4
+autocmd FileType python let g:pydiction_location = '~/.vim/bundle/pydiction/complete-dict'
+
+" vim-indent-guides
+" ----------------------------------------------
+let g:indent_guides_enable_on_vim_startup=1
+let g:indent_guides_start_level=2
+let g:indent_guides_auto_colors=0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=247
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=251
+let g:indent_guides_color_change_percent = 30
+let g:indent_guides_guide_size = 1
+
+" Jedi
+" ----------------------------------------------
+let g:jedi#popup_on_dot=0
+let g:jedi#force_py_version = 3
+
+" Lightline
+" ----------------------------------------------
+set laststatus=2
+set showtabline=2
+set noshowmode
+let g:lightline = { 'colorscheme' : 'wombat',}
+
+" Vimdoc-ja
+" ----------------------------------------------
+helptags ~/.vim/bundle/vimdoc-ja/doc
+set helplang=ja,en
+
+" caw.vim.git
+" ----------------------------------------------
+nmap <Leader>c <Plug>(caw:i:toggle)
+vmap <Leader>c <Plug>(caw:i:toggle)
+
+" Syntastic
+" ----------------------------------------------
+let g:syntastic_python_checkers = ["flake8"]
+let g:syntastic_python_flake8_args = '--ignore="E501"'
+
+" Execute python script C-P 
+" ----------------------------------------------
+"function! s:ExecPy()
+"    exe "!" . &ft . " %"
+":endfunction
+"command! Exec call <SID>ExecPy()
+"autocmd FileType python map <silent> <C-P> :call <SID>ExecPy()<CR>
+

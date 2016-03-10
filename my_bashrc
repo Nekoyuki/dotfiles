@@ -1,0 +1,55 @@
+# my_bashrc
+# Version 1
+#**************************************
+export PS1="\[\033[1;34m\][\!:\u@\h:\W]>\[\033[0m\]"
+export TERM=xterm-256color
+
+# alias
+#**************************************
+alias ls='ls --color=tty -F'
+alias la='ls --color=tty -F -a'
+alias l='ls --color=tty -F'
+
+alias v='vim'
+alias vi='vim'
+
+alias c='clear'
+alias d='diff'
+alias g='grep'
+alias h='history'
+alias m='more'
+alias p='pwd'
+
+alias rm='rm -i'
+alias ..='cd ..'
+alias he='head'
+alias ta='tail'
+alias le='less'
+alias pa='ps -a'
+
+alias ip='ipython --profile default'
+alias ipp='ipython qtconsole --profile default --pylab=inline'
+
+# functions
+#**************************************
+function hg(){ (head -1 $1 ; tail -n +2 $1 | grep $2) }
+
+function settitle ()
+{
+    t="`hostname` [$@]"
+    # "\e]2;" > control code to start changing the window title
+    # "\007"  > control code to end
+    echo -ne "\e]2;$t\007"
+}
+
+function cd()
+{
+  builtin cd $@ && settitle `pwd`
+}
+
+function ic()
+{
+	iconv -f SJIS -t UTF-8 $1 -o $1_ic_$$
+	mv $1_ic_$$ $1
+}
+
