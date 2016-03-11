@@ -231,7 +231,7 @@ fi
 if [ -e "${HOME}/.zplug" ]; then
     source ~/.zplug/zplug
 
-    # zplug "zsh-users/zsh-syntax-highlighting"
+    zplug "zsh-users/zsh-syntax-highlighting"
 
     # zplug "Valodim/zsh-prompt-powerline"
     # zplug "themes/agnoster", from:oh-my-zsh
