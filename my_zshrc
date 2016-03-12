@@ -100,10 +100,8 @@ esac
 #**************************************
 case ${OSTYPE} in
     linux*)
-        # alias ls='ls --color=tty -F'
         ;;
     msys*)
-        # alias ls='ls --color=auto --show-control-chars -F'
         alias jq='jupyter qtconsole'
         alias jn='jupyter notebook'
         ;;
@@ -112,7 +110,7 @@ esac
 alias v='vim'
 alias vi='vim'
 
-alias ls='ls --color=tty -F'
+alias ls='ls --color=tty --show-control-chars -F'
 alias la='ls -a'
 alias ll='ls -al'
 alias l='ls'
@@ -213,7 +211,6 @@ if [ -x "`which peco`" ]; then
     case ${OSTYPE} in
         linux*)
             alias -g P='| peco'
-            # alias ll='ls -la | peco'
             alias tp='top | peco'
             alias pp='ps aux | peco'
 
