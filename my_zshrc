@@ -1,5 +1,5 @@
 # my_zshrc
-# Version 2
+# Version 3
 #**************************************
 export LANG=ja_jp.UTF-8
 export EDITOR=vim
@@ -56,6 +56,11 @@ setopt pushd_ignore_dups
 #**************************************
 # autoload predict-on
 # predict-on
+
+# cd
+#**************************************
+setopt auto_cd
+function chpwd() { ls }
 
 # remove
 #**************************************
@@ -123,7 +128,7 @@ alias m='more'
 alias p='pwd'
 
 alias rm='rm -i'
-alias ..='cd ..'
+# alias ..='cd ..'
 alias he='head'
 alias ta='tail'
 alias le='less'
