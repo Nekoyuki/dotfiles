@@ -1,5 +1,5 @@
 # my_zshrc
-# Version 3
+# Version 5
 #**************************************
 export LANG=ja_jp.UTF-8
 export EDITOR=vim
@@ -60,7 +60,7 @@ setopt pushd_ignore_dups
 # cd
 #**************************************
 setopt auto_cd
-function chpwd() { ls }
+# function chpwd() { ls }
 
 # remove
 #**************************************
@@ -128,7 +128,6 @@ alias m='more'
 alias p='pwd'
 
 alias rm='rm -i'
-# alias ..='cd ..'
 alias he='head'
 alias ta='tail'
 alias le='less'
@@ -159,9 +158,13 @@ function settitle ()
     echo -ne "\e]2;$t\007"
 }
 
-function cd()
-{
-  builtin cd $@ && settitle `pwd` && ls
+# function cd()
+# {
+#   builtin cd $@ && settitle `pwd` && ls
+# }
+
+function chpwd() {
+  settitle `pwd` && ls
 }
 
 function ic()
