@@ -1,5 +1,5 @@
 # my_zshrc
-# Version 5
+# Version 6
 #**************************************
 export LANG=ja_jp.UTF-8
 export EDITOR=vim
@@ -172,6 +172,19 @@ function ic()
 	iconv -f SJIS -t UTF-8 $1 -o $1_ic_$$
 	mv $1_ic_$$ $1
 }
+
+# Python
+#**************************************
+case ${OSTYPE} in
+    linux*)
+        ;;
+    msys*)
+        if [ -e "/c/Anaconda3/python" ]; then
+            export PATH='/c/Anaconda3:/c/Anaconda3/Scripts:'$PATH
+            export PYTHONPATH='/c/Anaconda3/Lib/site-packages'
+        fi
+        ;;
+esac
 
 # peco
 #**************************************
