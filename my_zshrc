@@ -24,6 +24,7 @@ case ${OSTYPE} in
     msys*)
         export SHELL=/usr/bin/zsh
 
+        # export LANG="ja_JP.UTF-8"
         # export LANG="ja_jp.SJIS"
         # export LC_CTYPE="ja_jp.SJIS"
         # export LC_NUMERIC="ja_jp.SJIS"

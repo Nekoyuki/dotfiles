@@ -1,5 +1,5 @@
 " my_vimrc
-" Ver.10
+" Ver.11
 " ----------------------------------------------
 colorscheme default
 
@@ -47,23 +47,23 @@ set nowrap
 
 " Encode
 " ----------------------------------------------
-if has('unix')
-    set encoding=utf-8
-
-    set fileformat=unix
-    set fileformats=unix,dos,mac
-    set fileencoding=utf-8
-    set fileencodings=utf-8,iso-2022-jp,cp932,euc-jp
-    set termencoding=
-elseif has('win32')
-    set encoding=utf-8
-
-    set fileformat=dos
-    set fileformats=dos,unix,mac
-    set fileencoding=utf-8
-    set fileencodings=iso-2022-jp,utf-8,euc-jp,cp932
-    set termencoding=
-endif
+" if has('unix')
+"     set encoding=utf-8
+"
+"     set fileformat=unix
+"     set fileformats=unix,dos,mac
+"     set fileencoding=utf-8
+"     set fileencodings=utf-8,iso-2022-jp,cp932,euc-jp
+"     set termencoding=
+" elseif has('win32')
+"     set encoding=utf-8
+"
+"     set fileformat=dos
+"     set fileformats=dos,unix,mac
+"     set fileencoding=utf-8
+"     set fileencodings=iso-2022-jp,utf-8,euc-jp,cp932
+"     set termencoding=
+" endif
 
 " keymap
 " ----------------------------------------------
