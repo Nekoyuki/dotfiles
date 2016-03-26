@@ -24,19 +24,19 @@ case ${OSTYPE} in
     msys*)
         export SHELL=/usr/bin/zsh
 
-        export LANG="ja_jp.SJIS"
-        export LC_CTYPE="ja_jp.SJIS"
-        export LC_NUMERIC="ja_jp.SJIS"
-        export LC_TIME="ja_jp.SJIS"
-        export LC_COLLATE="ja_jp.SJIS"
-        export LC_MONETARY="ja_jp.SJIS"
-        export LC_MESSAGES="ja_jp.SJIS"
-        export LC_PAPER="ja_jp.SJIS"
-        export LC_NAME="ja_jp.SJIS"
-        export LC_ADDRESS="ja_jp.SJIS"
-        export LC_TELEPHONE="ja_jp.SJIS"
-        export LC_MEASUREMENT="ja_jp.SJIS"
-        export LC_IDENTIFICATION="ja_jp.SJIS"
+        # export LANG="ja_jp.SJIS"
+        # export LC_CTYPE="ja_jp.SJIS"
+        # export LC_NUMERIC="ja_jp.SJIS"
+        # export LC_TIME="ja_jp.SJIS"
+        # export LC_COLLATE="ja_jp.SJIS"
+        # export LC_MONETARY="ja_jp.SJIS"
+        # export LC_MESSAGES="ja_jp.SJIS"
+        # export LC_PAPER="ja_jp.SJIS"
+        # export LC_NAME="ja_jp.SJIS"
+        # export LC_ADDRESS="ja_jp.SJIS"
+        # export LC_TELEPHONE="ja_jp.SJIS"
+        # export LC_MEASUREMENT="ja_jp.SJIS"
+        # export LC_IDENTIFICATION="ja_jp.SJIS"
 
         export BROWSER="C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
         export GOPATH=/c/Go
