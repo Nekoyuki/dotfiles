@@ -1,15 +1,43 @@
 # my_zshrc
-# Version 6
+# Version 7
 #**************************************
-export LANG=ja_jp.UTF-8
 export EDITOR=vim
 
 case ${OSTYPE} in
     linux*)
         export SHELL=${HOME}/local/bin/zsh
+
+        export LANG="ja_jp.UTF-8"
+        export LC_CTYPE="ja_jp.UTF-8"
+        export LC_NUMERIC="ja_jp.UTF-8"
+        export LC_TIME="ja_jp.UTF-8"
+        export LC_COLLATE="ja_jp.UTF-8"
+        export LC_MONETARY="ja_jp.UTF-8"
+        export LC_MESSAGES="ja_jp.UTF-8"
+        export LC_PAPER="ja_jp.UTF-8"
+        export LC_NAME="ja_jp.UTF-8"
+        export LC_ADDRESS="ja_jp.UTF-8"
+        export LC_TELEPHONE="ja_jp.UTF-8"
+        export LC_MEASUREMENT="ja_jp.UTF-8"
+        export LC_IDENTIFICATION="ja_jp.UTF-8"
         ;;
     msys*)
         export SHELL=/usr/bin/zsh
+
+        export LANG="ja_jp.SJIS"
+        export LC_CTYPE="ja_jp.SJIS"
+        export LC_NUMERIC="ja_jp.SJIS"
+        export LC_TIME="ja_jp.SJIS"
+        export LC_COLLATE="ja_jp.SJIS"
+        export LC_MONETARY="ja_jp.SJIS"
+        export LC_MESSAGES="ja_jp.SJIS"
+        export LC_PAPER="ja_jp.SJIS"
+        export LC_NAME="ja_jp.SJIS"
+        export LC_ADDRESS="ja_jp.SJIS"
+        export LC_TELEPHONE="ja_jp.SJIS"
+        export LC_MEASUREMENT="ja_jp.SJIS"
+        export LC_IDENTIFICATION="ja_jp.SJIS"
+
         export BROWSER="C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
         export GOPATH=/c/Go
         ;;
