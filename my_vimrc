@@ -1,5 +1,5 @@
 " my_vimrc
-" Ver.11
+" Ver.12
 " ----------------------------------------------
 colorscheme default
 
@@ -15,6 +15,8 @@ set softtabstop=4					"Tab = blank * 4
 set smartindent						"
 "set list							"On  invisible char
 set mouse=a							"On  mouse
+set visualbell t_vb=                "Off sound
+set clipboard=unnamed,autoselect    "On  clipboard
 
 syntax on							"On  syntax highlight
 highlight Normal ctermbg=none ctermfg=black                                " Background color
