@@ -1,5 +1,5 @@
 # my_zshrc
-# Version 7
+# Version 8
 #**************************************
 export EDITOR=vim
 
@@ -114,21 +114,23 @@ setopt magic_equal_subst
 
 # keybinds
 #**************************************
-case ${OSTYPE} in
-    linux*)
-        ;;
-    msys*)
-        bindkey '^a' beginning-of-line
-        bindkey '^b' backward-char
-        bindkey '^e' end-of-line
-        bindkey '^f' forward-char
-        bindkey '^k' kill-line
-        bindkey '^n' down-line-or-history
-        bindkey '^p' up-line-or-history
-        bindkey '^r' history-incremental-search-backward
-        bindkey '^s' history-incremental-search-forward
-        ;;
-esac
+bindkey -e
+
+# case ${OSTYPE} in
+#     linux*)
+#         ;;
+#     msys*)
+#         bindkey '^a' beginning-of-line
+#         bindkey '^b' backward-char
+#         bindkey '^e' end-of-line
+#         bindkey '^f' forward-char
+#         bindkey '^k' kill-line
+#         bindkey '^n' down-line-or-history
+#         bindkey '^p' up-line-or-history
+#         bindkey '^r' history-incremental-search-backward
+#         bindkey '^s' history-incremental-search-forward
+#         ;;
+# esac
 
 # alias
 #**************************************
