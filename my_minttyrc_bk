@@ -1,0 +1,11 @@
+BoldAsFont=no
+Font=ÇlÇr ÉSÉVÉbÉN
+Locale=ja_JP
+Charset=SJIS
+BackgroundColour=255,255,255
+ForegroundColour=0,0,0
+Term=xterm-256color
+FontHeight=9
+Transparency=off
+CursorType=block
+CursorBlinks=no

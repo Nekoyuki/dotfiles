@@ -1,5 +1,5 @@
 # my_zshrc
-# Version 8
+# Version 9
 #**************************************
 export EDITOR=vim
 
@@ -136,10 +136,16 @@ bindkey -e
 #**************************************
 case ${OSTYPE} in
     linux*)
+        alias ip='ipython --profile default'
+        alias iq='ipython qtconsole --profile default --pylab=inline'
+        alias tmux='LD_LIBRARY_PATH=$HOME/local/lib tmux'
         ;;
     msys*)
+        alias jp='winpty jupyter console'
         alias jq='jupyter qtconsole'
         alias jn='jupyter notebook'
+        alias ip='winpty ipython --profile default --pylab=auto'
+        # alias iq='ipython qtconsole --profile default --pylab=inline'
         ;;
 esac
 
@@ -163,9 +169,6 @@ alias he='head'
 alias ta='tail'
 alias le='less'
 alias pa='ps -a'
-
-alias ip='ipython --profile default'
-alias iq='ipython qtconsole --profile default --pylab=inline'
 
 # global alias
 #**************************************
