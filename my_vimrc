@@ -1,7 +1,10 @@
 " my_vimrc
-" Ver.15
+" Ver.16
 " ----------------------------------------------
-colorscheme default
+
+" OSTYPE
+" ----------------------------------------------
+let OSTYPE = system('uname')
 
 set notitle							"Off 'Thanks for flying Vim'
 set showmatch						"On  highlight ()
@@ -18,11 +21,10 @@ set mouse=a							"On  mouse
 set visualbell t_vb=                "Off sound
 set clipboard=unnamed,autoselect    "On  clipboard
 
-syntax on							"On  syntax highlight
-highlight Normal ctermbg=none ctermfg=black                                " Background color
-"highlight Normal ctermbg=white ctermfg=black                                " Background color
-highlight StatusLine term=none cterm=none ctermfg=grey ctermbg=black
-highlight CursorLine term=none cterm=none ctermfg=none ctermbg=lightgray    " Cursor line color
+syntax enable						"On  syntax highlight
+" highlight Normal ctermbg=none ctermfg=black                                " Background color
+" highlight StatusLine term=none cterm=none ctermfg=grey ctermbg=black
+" highlight CursorLine term=none cterm=none ctermfg=none ctermbg=lightgray    " Cursor line color
 "set cursorline                 " On  highlight cursor row
 set nocursorline                " Off highlight cursor row
 autocmd InsertEnter,InsertLeave * set cursorline!       " On  cursor row highlight when insert mode
@@ -166,8 +168,8 @@ set helplang=ja,en
 
 " caw.vim.git
 " ----------------------------------------------
-nmap <Leader>c <Plug>(caw:tildepos:toggle)
-vmap <Leader>c <Plug>(caw:tildepos:toggle)
+nmap <Leader>c <Plug>(caw:hatpos:toggle)
+vmap <Leader>c <Plug>(caw:hatpos:toggle)
 " nmap <Leader>c <Plug>(caw:i:toggle)
 " vmap <Leader>c <Plug>(caw:i:toggle)
 
@@ -178,9 +180,17 @@ let g:syntastic_python_flake8_args = '--ignore="E501"'
 
 " vim-clors-solarized
 " ----------------------------------------------
-syntax enable
-set background=dark
-colorscheme solarized
+if OSTYPE == "Linux\n"
+    colorscheme desert
+elseif OSTYPE == "MSYS_NT-6.1\n"
+    syntax enable
+    set background=dark
+    colorscheme solarized
+elseif OSTYPE == "MSYS_NT-10.0\n"
+    syntax enable
+    set background=dark
+    colorscheme solarized
+endif
 
 " Execute python script C-P 
 " ----------------------------------------------
