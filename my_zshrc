@@ -54,14 +54,13 @@ colors
 #**************************************
 case ${HOSTNAME} in 
     r*)
-        local HOSTCOLOR=$'\e[36;30;5;096m'
+        local HOSTCOLOR=$'\e[30;48;5;183m'
         ;;
     N*)
-        local HOSTCOLOR=$'\e[36;30;5;081m'
+        local HOSTCOLOR=$'\e[30;48;5;030m'
         ;;
     h*)
-        local HOSTCOLOR=$'\e[36;30;5;081m'
-        # local HOSTCOLOR=$'\e[38;5;081m'
+        local HOSTCOLOR=$'\e[30;48;5;030m'
         ;;
 esac
 
