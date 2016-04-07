@@ -1,5 +1,5 @@
 # my_zshrc
-# Version 11
+# Version 12
 #**************************************
 export EDITOR=vim
 
@@ -54,7 +54,7 @@ colors
 #**************************************
 case ${HOSTNAME} in 
     r*)
-        local HOSTCOLOR=$'\e[30;48;5;183m'
+        local HOSTCOLOR=$'\e[30;48;5;132m'
         ;;
     N*)
         local HOSTCOLOR=$'\e[30;48;5;030m'
@@ -67,7 +67,8 @@ esac
 local COLOR_FG=$'\e[38;5;034m'
 local COLOR_BG=$'\e[30;48;5;082m'
 local COLOR_RESET=$'\e[0m'
-PROMPT="${COLOR_FG}[%h:%n@${COLOR_RESET}${HOSTCOLOR}%m${COLOR_RESET}${COLOR_FG}:%c]>${COLOR_RESET}"
+# PROMPT="${COLOR_FG}[%h:%n@${COLOR_RESET}${HOSTCOLOR}%m${COLOR_RESET}${COLOR_FG}:%c]>${COLOR_RESET}"
+PROMPT="%{${COLOR_FG}%}[%h:%n@%{${COLOR_RESET}%}%{${HOSTCOLOR}%}%m%{${COLOR_RESET}%}%{${COLOR_FG}%}:%c]>%{${COLOR_RESET}%}"
 
 # PROMPT="%{${fg[blue]}%}[%h:%n@%m:%c]>%{${reset_color}%}"
 PROMPT2="%_%%"

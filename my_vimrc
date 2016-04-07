@@ -1,5 +1,5 @@
 " my_vimrc
-" Ver.16
+" Ver.17
 " ----------------------------------------------
 
 " OSTYPE
@@ -126,6 +126,7 @@ NeoBundle 'tyru/caw.vim.git'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'bronson/vim-trailing-whitespace'
 NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'rhysd/clever-f.vim'
 
 call neobundle#end()
 
