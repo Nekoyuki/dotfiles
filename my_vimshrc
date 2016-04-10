@@ -1,0 +1,14 @@
+# my_vimshrc
+# Ver.01
+# ----------------------------------------------
+
+alias ls='ls --color=tty --show-control-chars -F'
+alias l='ls'
+alias c='clear'
+alias g='grep --color -i'
+alias h='history'
+alias m='more'
+alias p='pwd'
+alias v='vim'
+
+

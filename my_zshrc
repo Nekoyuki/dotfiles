@@ -67,7 +67,6 @@ esac
 local COLOR_FG=$'\e[38;5;034m'
 local COLOR_BG=$'\e[30;48;5;082m'
 local COLOR_RESET=$'\e[0m'
-# PROMPT="${COLOR_FG}[%h:%n@${COLOR_RESET}${HOSTCOLOR}%m${COLOR_RESET}${COLOR_FG}:%c]>${COLOR_RESET}"
 PROMPT="%{${COLOR_FG}%}[%h:%n@%{${COLOR_RESET}%}%{${HOSTCOLOR}%}%m%{${COLOR_RESET}%}%{${COLOR_FG}%}:%c]>%{${COLOR_RESET}%}"
 
 # PROMPT="%{${fg[blue]}%}[%h:%n@%m:%c]>%{${reset_color}%}"

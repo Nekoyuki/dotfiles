@@ -1,13 +1,13 @@
 " my_vimrc
-" Ver.17
+" Ver.19
 " ----------------------------------------------
 
 " OSTYPE
 " ----------------------------------------------
 let OSTYPE = system('uname')
 
-set notitle							"Off 'Thanks for flying Vim'
-set showmatch						"On  highlight ()
+set notitle					    	"Off 'Thanks for flying Vim'
+" set showmatch						"On  highlight (), conflict with VimShell
 
 set tabstop=4						"Tab = blank * 4
 set autoindent						"Tab = blank * 4
@@ -25,26 +25,24 @@ syntax enable						"On  syntax highlight
 " highlight Normal ctermbg=none ctermfg=black                                " Background color
 " highlight StatusLine term=none cterm=none ctermfg=grey ctermbg=black
 " highlight CursorLine term=none cterm=none ctermfg=none ctermbg=lightgray    " Cursor line color
-"set cursorline                 " On  highlight cursor row
-set nocursorline                " Off highlight cursor row
+"set cursorline                 "On  highlight cursor row
+set nocursorline                "Off highlight cursor row
 autocmd InsertEnter,InsertLeave * set cursorline!       " On  cursor row highlight when insert mode
-"set cursorcolumn               " On  highlight cursor column
-set ruler                       " On  ruler at the bottom to show the cursor location
-set hlsearch                    " On  keyword search highlight
-"set nohlsearch                 " Off keyword search highlight
+"set cursorcolumn               "On  highlight cursor column
+set ruler                       "On  ruler at the bottom to show the cursor location
+set hlsearch                    "On  keyword search highlight
+"set nohlsearch                 "Off keyword search highlight
 
-set number							"On  number
-set laststatus=2                " On  status line always
-set statusline=%F%h%=%p         " Contents of status line
+set number						        "On  number
+set laststatus=2                        "On  status line always
+set statusline=%F%h%=%p                 "Contents of status line
 
-set incsearch						"On  incremental search
+set incsearch					        "On  incremental search
 set wildmenu wildmode=list:longest		"On  list of complement result
-"set wildmenu wildmode=list:full		"On  list of complement result
 
-set ignorecase						"On  ignore the difference between large and small char
+set ignorecase					        "On  ignore the difference between large and small char
 set smartcase
 set wrapscan
-
 set nobackup
 set noswapfile
 set nowrap
@@ -127,6 +125,8 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle 'bronson/vim-trailing-whitespace'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'rhysd/clever-f.vim'
+NeoBundle 'Shougo/vimshell'
+NeoBundle 'Shougo/vimproc'
 
 call neobundle#end()
 
@@ -142,6 +142,7 @@ autocmd FileType python let g:pydiction_location = '~/.vim/bundle/pydiction/comp
 
 " vim-indent-guides
 " ----------------------------------------------
+colorscheme default
 let g:indent_guides_enable_on_vim_startup=1
 let g:indent_guides_start_level=2
 let g:indent_guides_auto_colors=0
@@ -171,8 +172,6 @@ set helplang=ja,en
 " ----------------------------------------------
 nmap <Leader>c <Plug>(caw:hatpos:toggle)
 vmap <Leader>c <Plug>(caw:hatpos:toggle)
-" nmap <Leader>c <Plug>(caw:i:toggle)
-" vmap <Leader>c <Plug>(caw:i:toggle)
 
 " Syntastic
 " ----------------------------------------------
@@ -193,11 +192,13 @@ elseif OSTYPE == "MSYS_NT-10.0\n"
     colorscheme solarized
 endif
 
-" Execute python script C-P 
+" VimShell
 " ----------------------------------------------
-"function! s:ExecPy()
-"    exe "!" . &ft . " %"
-":endfunction
-"command! Exec call <SID>ExecPy()
-"autocmd FileType python map <silent> <C-P> :call <SID>ExecPy()<CR>
+let g:vimshell_prompt = "[".$USERNAME."@".$HOSTNAME."]> "
+let g:vimshell_secondary_prompt = "> "
+let g:vimshell_user_prompt = '"(" . getcwd() . ") --- (" . $USER . "@" . hostname() . ")"'
+
+nnoremap <silent> vs :VimShell<CR>
+nnoremap <silent> vss :VimShellSendString<CR>
+nnoremap <silent> vip :VimShellInteractive ipython<CR>
 
