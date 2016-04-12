@@ -1,5 +1,5 @@
 # my_zshrc
-# Version 12
+# Version 16
 #**************************************
 export EDITOR=vim
 
@@ -23,6 +23,15 @@ case ${OSTYPE} in
         ;;
     msys*)
         export SHELL=/usr/bin/zsh
+
+        case ${CONTITLE} in
+            MSys2_UTF-8)
+                export LANG="ja_JP.UTF-8"
+                ;;
+            MSys2_SJIS)
+                export LANG="ja_JP.SJIS"
+                ;;
+        esac
 
         # export LANG="ja_JP.UTF-8"
         # export LANG="ja_jp.SJIS"
@@ -67,7 +76,9 @@ esac
 local COLOR_FG=$'\e[38;5;034m'
 local COLOR_BG=$'\e[30;48;5;082m'
 local COLOR_RESET=$'\e[0m'
-PROMPT="%{${COLOR_FG}%}[%h:%n@%{${COLOR_RESET}%}%{${HOSTCOLOR}%}%m%{${COLOR_RESET}%}%{${COLOR_FG}%}:%c]>%{${COLOR_RESET}%}"
+local PROMPT_LANG=`echo ${LANG} | cut -c 7-`
+PROMPT="%{${COLOR_FG}%}[%h:%n@%{${COLOR_RESET}%}%{${HOSTCOLOR}%}%m%{${COLOR_RESET}%}%{${COLOR_FG}%}:${PROMPT_LANG}:%c]>%{${COLOR_RESET}%}"
+# PROMPT="%{${COLOR_FG}%}[%h:%n@%{${COLOR_RESET}%}%{${HOSTCOLOR}%}%m%{${COLOR_RESET}%}%{${COLOR_FG}%}:%c]>%{${COLOR_RESET}%}"
 
 # PROMPT="%{${fg[blue]}%}[%h:%n@%m:%c]>%{${reset_color}%}"
 PROMPT2="%_%%"
@@ -184,7 +195,8 @@ alias p='pwd'
 alias rm='rm -i'
 alias he='head'
 alias ta='tail'
-alias le='less'
+alias tm='tmux'
+alias le='less -N'
 alias pa='ps -a'
 
 # global alias
