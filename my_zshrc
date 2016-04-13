@@ -1,5 +1,5 @@
 # my_zshrc
-# Version 16
+# Version 17
 #**************************************
 export EDITOR=vim
 
@@ -49,7 +49,6 @@ case ${OSTYPE} in
         # export LC_IDENTIFICATION="ja_jp.SJIS"
 
         export BROWSER="C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
-        export GOPATH=/c/Go
         ;;
 esac
 
@@ -73,14 +72,24 @@ case ${HOSTNAME} in
         ;;
 esac
 
+local LANG_WORD=`echo ${LANG} | cut -c 7-`
+case ${LANG_WORD} in 
+    UTF-8)
+        local LANG_COLOR=$'\e[30;48;5;030m'
+        ;;
+    SJIS)
+        local LANG_COLOR=$'\e[30;48;5;132m'
+        ;;
+esac
+local PROMPT_LANG=%{${LANG_COLOR}%}%{${LANG_WORD}%}%{${COLOR_RESET}%}
+
 local COLOR_FG=$'\e[38;5;034m'
 local COLOR_BG=$'\e[30;48;5;082m'
 local COLOR_RESET=$'\e[0m'
-local PROMPT_LANG=`echo ${LANG} | cut -c 7-`
-PROMPT="%{${COLOR_FG}%}[%h:%n@%{${COLOR_RESET}%}%{${HOSTCOLOR}%}%m%{${COLOR_RESET}%}%{${COLOR_FG}%}:${PROMPT_LANG}:%c]>%{${COLOR_RESET}%}"
-# PROMPT="%{${COLOR_FG}%}[%h:%n@%{${COLOR_RESET}%}%{${HOSTCOLOR}%}%m%{${COLOR_RESET}%}%{${COLOR_FG}%}:%c]>%{${COLOR_RESET}%}"
 
+PROMPT="%{${COLOR_FG}%}[%h:%n@%{${COLOR_RESET}%}%{${HOSTCOLOR}%}%m%{${COLOR_RESET}%}%{${COLOR_FG}%}:${PROMPT_LANG}:%c]>%{${COLOR_RESET}%}"
 # PROMPT="%{${fg[blue]}%}[%h:%n@%m:%c]>%{${reset_color}%}"
+
 PROMPT2="%_%%"
 SPROMT="${fg[red]}>>${reset_color}"
 
@@ -249,6 +258,19 @@ case ${OSTYPE} in
         ;;
 esac
 
+# Go
+#**************************************
+case ${OSTYPE} in
+    linux*)
+        ;;
+    msys*)
+        if [ -e "/c/Go/bin/go" ]; then
+            export GOPATH=/c/Go
+            export PATH='/c/Go/bin:'$PATH
+        fi
+        ;;
+esac
+
 # peco
 #**************************************
 if [ -x "`which peco`" ]; then
@@ -320,7 +342,4 @@ if [ -e "${HOME}/.zplug" ]; then
 
     zplug load --verbose
 fi
-
-# /c/Anaconda3/Scripts/powerline-daemon -q
-# . /c/Anaconda3/Lib/site-packages/powerline/bindings/zsh/powerline.zsh
 
