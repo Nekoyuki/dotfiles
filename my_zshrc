@@ -63,6 +63,7 @@ colors
 # keybinds
 #**************************************
 bindkey -v
+bindkey -M viins 'jj' vi-cmd-mode
 # bindkey -e
 
 # case ${OSTYPE} in
