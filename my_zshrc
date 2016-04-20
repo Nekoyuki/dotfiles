@@ -1,5 +1,5 @@
 # my_zshrc
-# Version 18
+# Version 19
 #**************************************
 export EDITOR=vim
 
@@ -60,6 +60,27 @@ export TERM=xterm-256color
 autoload -Uz colors
 colors
 
+# keybinds
+#**************************************
+bindkey -v
+# bindkey -e
+
+# case ${OSTYPE} in
+#     linux*)
+#         ;;
+#     msys*)
+#         bindkey '^a' beginning-of-line
+#         bindkey '^b' backward-char
+#         bindkey '^e' end-of-line
+#         bindkey '^f' forward-char
+#         bindkey '^k' kill-line
+#         bindkey '^n' down-line-or-history
+#         bindkey '^p' up-line-or-history
+#         bindkey '^r' history-incremental-search-backward
+#         bindkey '^s' history-incremental-search-forward
+#         ;;
+# esac
+
 # prompt
 #**************************************
 local COLOR_FG=$'\e[38;5;034m'
@@ -89,11 +110,47 @@ case ${LANG_WORD} in
 esac
 local PROMPT_LANG=${LANG_COLOR}${LANG_WORD}${COLOR_RESET}
 
-PROMPT="%{${COLOR_FG}%}[%h:%n@%{${COLOR_RESET}%}%{${HOSTCOLOR}%}%m%{${COLOR_RESET}%}%{${COLOR_FG}%}:%{${PROMPT_LANG}%}:%{${COLOR_FG}%}%c]>%{${COLOR_RESET}%}"
+local MY_PROMPT="%{${COLOR_FG}%}[%h:%n@%{${COLOR_RESET}%}%{${HOSTCOLOR}%}%m%{${COLOR_RESET}%}%{${COLOR_FG}%}:%{${PROMPT_LANG}%}:%{${COLOR_FG}%}%c]>%{${COLOR_RESET}%}"
+# PROMPT="%{${COLOR_FG}%}[%h:%n@%{${COLOR_RESET}%}%{${HOSTCOLOR}%}%m%{${COLOR_RESET}%}%{${COLOR_FG}%}:%{${PROMPT_LANG}%}:%{${COLOR_FG}%}%c]>%{${COLOR_RESET}%}"
 # PROMPT="%{${fg[blue]}%}[%h:%n@%m:%c]>%{${reset_color}%}"
 
 PROMPT2="%_%%"
 SPROMT="${fg[red]}>>${reset_color}"
+
+# from b4b4r07
+autoload -Uz colors; colors
+autoload -Uz add-zsh-hook
+autoload -Uz terminfo
+
+terminfo_down_sc=$terminfo[cud1]$terminfo[cuu1]$terminfo[sc]$terminfo[cud1]
+left_down_prompt_preexec() {
+    print -rn -- $terminfo[el]
+}
+add-zsh-hook preexec left_down_prompt_preexec
+
+function zle-keymap-select zle-line-init zle-line-finish
+{
+    case $KEYMAP in
+        main|viins)
+            PROMPT_2="$fg[cyan]-- INSERT --$reset_color"
+            ;;
+        vicmd)
+            PROMPT_2="$fg[white]-- NORMAL --$reset_color"
+            ;;
+        vivis|vivli)
+            PROMPT_2="$fg[yellow]-- VISUAL --$reset_color"
+            ;;
+    esac
+
+    PROMPT="%{$terminfo_down_sc$PROMPT_2$terminfo[rc]%}%{$MY_PROMPT%} "
+    # PROMPT="%{$terminfo_down_sc$PROMPT_2$terminfo[rc]%}[%(?.%{${fg[green]}%}.%{${fg[red]}%})%n%{${reset_color}%}]%# "
+    zle reset-prompt
+}
+
+zle -N zle-line-init
+zle -N zle-line-finish
+zle -N zle-keymap-select
+zle -N edit-command-line
 
 # completion
 #**************************************
@@ -150,26 +207,6 @@ setopt no_beep
 setopt print_eight_bit
 setopt noautoremoveslash
 setopt magic_equal_subst
-
-# keybinds
-#**************************************
-bindkey -e
-
-# case ${OSTYPE} in
-#     linux*)
-#         ;;
-#     msys*)
-#         bindkey '^a' beginning-of-line
-#         bindkey '^b' backward-char
-#         bindkey '^e' end-of-line
-#         bindkey '^f' forward-char
-#         bindkey '^k' kill-line
-#         bindkey '^n' down-line-or-history
-#         bindkey '^p' up-line-or-history
-#         bindkey '^r' history-incremental-search-backward
-#         bindkey '^s' history-incremental-search-forward
-#         ;;
-# esac
 
 # alias
 #**************************************
@@ -337,6 +374,8 @@ if [ -e "${HOME}/.zplug" ]; then
     source ~/.zplug/zplug
 
     zplug "zsh-users/zsh-syntax-highlighting"
+    zplug "hchbaw/opp.zsh"
+    zplug "b4b4r07/zsh-vimode-visual"
 
     # zplug "Valodim/zsh-prompt-powerline"
     # zplug "themes/agnoster", from:oh-my-zsh
