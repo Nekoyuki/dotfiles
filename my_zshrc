@@ -1,5 +1,5 @@
 # my_zshrc
-# Version 19
+# Version 20
 #**************************************
 export EDITOR=vim
 
@@ -63,24 +63,39 @@ colors
 # keybinds
 #**************************************
 bindkey -v
-bindkey -M viins 'jj' vi-cmd-mode
 # bindkey -e
 
-# case ${OSTYPE} in
-#     linux*)
-#         ;;
-#     msys*)
-#         bindkey '^a' beginning-of-line
-#         bindkey '^b' backward-char
-#         bindkey '^e' end-of-line
-#         bindkey '^f' forward-char
-#         bindkey '^k' kill-line
-#         bindkey '^n' down-line-or-history
-#         bindkey '^p' up-line-or-history
-#         bindkey '^r' history-incremental-search-backward
-#         bindkey '^s' history-incremental-search-forward
-#         ;;
-# esac
+# keybinds by b4b4r07
+#**************************************
+. ~/.zplug/repos/b4b4r07/zsh-vimode-visual/zsh-vimode-visual.sh
+
+# keybinds
+#**************************************
+# Easy to escape
+bindkey -M viins 'jj'  vi-cmd-mode
+# has_keymap "vivis" && bindkey -M vivis 'jj' vi-visual-exit
+
+# Merge emacs mode to viins mode
+bindkey -M viins '\er' history-incremental-pattern-search-forward
+bindkey -M viins '^?'  backward-delete-char
+bindkey -M viins '^A'  beginning-of-line
+bindkey -M viins '^B'  backward-char
+bindkey -M viins '^D'  delete-char-or-list
+bindkey -M viins '^E'  end-of-line
+bindkey -M viins '^F'  forward-char
+bindkey -M viins '^G'  send-break
+bindkey -M viins '^H'  backward-delete-char
+bindkey -M viins '^K'  kill-line
+bindkey -M viins '^N'  down-line-or-history
+bindkey -M viins '^P'  up-line-or-history
+bindkey -M viins '^R'  history-incremental-pattern-search-backward
+bindkey -M viins '^U'  backward-kill-line
+bindkey -M viins '^W'  backward-kill-word
+bindkey -M viins '^Y'  yank
+
+# Make more vim-like behaviors
+# bindkey -M vicmd 'gg' beginning-of-line
+# bindkey -M vicmd 'G'  end-of-line
 
 # prompt
 #**************************************
@@ -376,7 +391,7 @@ if [ -e "${HOME}/.zplug" ]; then
 
     zplug "zsh-users/zsh-syntax-highlighting"
     zplug "hchbaw/opp.zsh"
-    zplug "b4b4r07/zsh-vimode-visual"
+    # zplug "b4b4r07/zsh-vimode-visual"
 
     # zplug "Valodim/zsh-prompt-powerline"
     # zplug "themes/agnoster", from:oh-my-zsh
