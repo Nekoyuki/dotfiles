@@ -1,5 +1,5 @@
 # my_zshrc
-# Version 20
+# Version 22
 #**************************************
 export EDITOR=vim
 
@@ -34,21 +34,6 @@ case ${OSTYPE} in
                 export OUTPUT_CHARSET=sjis
                 ;;
         esac
-
-        # export LANG="ja_JP.UTF-8"
-        # export LANG="ja_jp.SJIS"
-        # export LC_CTYPE="ja_jp.SJIS"
-        # export LC_NUMERIC="ja_jp.SJIS"
-        # export LC_TIME="ja_jp.SJIS"
-        # export LC_COLLATE="ja_jp.SJIS"
-        # export LC_MONETARY="ja_jp.SJIS"
-        # export LC_MESSAGES="ja_jp.SJIS"
-        # export LC_PAPER="ja_jp.SJIS"
-        # export LC_NAME="ja_jp.SJIS"
-        # export LC_ADDRESS="ja_jp.SJIS"
-        # export LC_TELEPHONE="ja_jp.SJIS"
-        # export LC_MEASUREMENT="ja_jp.SJIS"
-        # export LC_IDENTIFICATION="ja_jp.SJIS"
 
         export BROWSER="C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
         ;;
@@ -128,7 +113,6 @@ local PROMPT_LANG=${LANG_COLOR}${LANG_WORD}${COLOR_RESET}
 
 local MY_PROMPT="%{${COLOR_FG}%}[%h:%n@%{${COLOR_RESET}%}%{${HOSTCOLOR}%}%m%{${COLOR_RESET}%}%{${COLOR_FG}%}:%{${PROMPT_LANG}%}:%{${COLOR_FG}%}%c]>%{${COLOR_RESET}%}"
 # PROMPT="%{${COLOR_FG}%}[%h:%n@%{${COLOR_RESET}%}%{${HOSTCOLOR}%}%m%{${COLOR_RESET}%}%{${COLOR_FG}%}:%{${PROMPT_LANG}%}:%{${COLOR_FG}%}%c]>%{${COLOR_RESET}%}"
-# PROMPT="%{${fg[blue]}%}[%h:%n@%m:%c]>%{${reset_color}%}"
 
 PROMPT2="%_%%"
 SPROMT="${fg[red]}>>${reset_color}"
@@ -159,7 +143,6 @@ function zle-keymap-select zle-line-init zle-line-finish
     esac
 
     PROMPT="%{$terminfo_down_sc$PROMPT_2$terminfo[rc]%}%{$MY_PROMPT%} "
-    # PROMPT="%{$terminfo_down_sc$PROMPT_2$terminfo[rc]%}[%(?.%{${fg[green]}%}.%{${fg[red]}%})%n%{${reset_color}%}]%# "
     zle reset-prompt
 }
 
@@ -237,7 +220,6 @@ case ${OSTYPE} in
         alias jq='jupyter qtconsole'
         alias jn='jupyter notebook'
         alias ip='winpty ipython --profile default --pylab=auto'
-        # alias iq='ipython qtconsole --profile default --pylab=inline'
         ;;
 esac
 
@@ -262,6 +244,7 @@ alias ta='tail'
 alias tm='tmux'
 alias le='less -N'
 alias pa='ps -a'
+alias py='python'
 
 # global alias
 #**************************************
@@ -390,12 +373,11 @@ if [ -e "${HOME}/.zplug" ]; then
     source ~/.zplug/zplug
 
     zplug "zsh-users/zsh-syntax-highlighting"
-    zplug "hchbaw/opp.zsh"
+    # zplug "hchbaw/opp.zsh"
     # zplug "b4b4r07/zsh-vimode-visual"
 
     # zplug "Valodim/zsh-prompt-powerline"
     # zplug "themes/agnoster", from:oh-my-zsh
-    # zplug "themes/avit", from:oh-my-zsh
 
     zplug load --verbose
 fi
