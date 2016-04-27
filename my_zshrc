@@ -1,5 +1,5 @@
 # my_zshrc
-# Version 25
+# Version 26
 #**************************************
 export EDITOR=vim
 
@@ -119,7 +119,7 @@ esac
 local PROMPT_LANG=${LANG_COLOR}${LANG_WORD}${COLOR_RESET}
 
 if [ -x "`which conda`" ]; then
-    local CONDA_ENV="conda env list | grep '\*' | awk '{print $1}'"
+    local CONDA_ENV=`conda env list | grep '\*' | awk '{print $1}'`
     case ${CONDA_ENV} in
         root)
             local CONDA_COLOR=$'\e[30;48;5;030m'
