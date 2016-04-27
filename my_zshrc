@@ -1,5 +1,5 @@
 # my_zshrc
-# Version 23
+# Version 25
 #**************************************
 export EDITOR=vim
 
@@ -118,8 +118,24 @@ case ${LANG_WORD} in
 esac
 local PROMPT_LANG=${LANG_COLOR}${LANG_WORD}${COLOR_RESET}
 
+if [ -x "`which conda`" ]; then
+    local CONDA_ENV="conda env list | grep '\*' | awk '{print $1}'"
+    case ${CONDA_ENV} in
+        root)
+            local CONDA_COLOR=$'\e[30;48;5;030m'
+            ;;
+        myenv)
+            local CONDA_COLOR=$'\e[30;48;5;132m'
+            ;;
+    esac
+else
+    local CONDA_ENV='no_conda'
+    local CONDA_COLOR=$'\e[30;48;5;030m'
+fi
+local PROMPT_CONDA=${CONDA_COLOR}${CONDA_ENV}${COLOR_RESET}
+
 local MY_PROMPT="
-%{${COLOR_00}%}  %h %{${COLOR_RESET}%}%{${COLOR_FG}%} %n > %{${COLOR_RESET}%}%{${HOSTCOLOR}%}%M%{${COLOR_RESET}%}%{${COLOR_FG}%} > %l > %{${PROMPT_LANG}%} > %{${COLOR_FG}%}%~ >%{${COLOR_RESET}%}"
+%{${COLOR_00}%}  %h %{${COLOR_RESET}%}%{${COLOR_FG}%} %n > %{${COLOR_RESET}%}%{${HOSTCOLOR}%}%M%{${COLOR_RESET}%}%{${COLOR_FG}%} > %l > %{${PROMPT_LANG}%} > %{${PROMPT_CONDA}%} > %{${COLOR_FG}%}%~ >%{${COLOR_RESET}%}"
 # %{${COLOR_00}%}  %h %{${COLOR_RESET}%}%{${COLOR_FG}%} > %W > %T > %n > %{${COLOR_RESET}%}%{${HOSTCOLOR}%}%M%{${COLOR_RESET}%}%{${COLOR_FG}%} > %l > %{${PROMPT_LANG}%} > %{${COLOR_FG}%}%d >%{${COLOR_RESET}%}"
 
 PROMPT2="%_%%"
