@@ -1,5 +1,5 @@
 # my_zshrc
-# Version 27
+# Version 28
 #**************************************
 export EDITOR=vim
 
@@ -111,7 +111,7 @@ case ${LANG} in
         local LANG_COLOR=$'\e[30;48;5;132m'
         ;;
 esac
-local PROMPT_LANG=${LANG_COLOR}${LANG_WORD}${COLOR_RESET}
+local PROMPT_LANG=${LANG_COLOR}${LANG}${COLOR_RESET}
 
 # if [ -x "`which conda`" ]; then
 #     local CONDA_ENV=`conda env list | grep '\*' | awk '{print $1}'`
@@ -129,12 +129,13 @@ local PROMPT_LANG=${LANG_COLOR}${LANG_WORD}${COLOR_RESET}
 # fi
 # local PROMPT_CONDA=${CONDA_COLOR}${CONDA_ENV}${COLOR_RESET}
 
-local CONDA_ENV='root'
-local CONDA_COLOR=$'\e[30;48;5;030m'
-local PROMPT_CONDA=${CONDA_COLOR}${CONDA_ENV}${COLOR_RESET}
+# local CONDA_ENV='root'
+# local CONDA_COLOR=$'\e[30;48;5;030m'
+# local PROMPT_CONDA=${CONDA_COLOR}${CONDA_ENV}${COLOR_RESET}
 
 local MY_PROMPT="
-%{${COLOR_BG}%} %h%{${COLOR_RESET}%} %n > %{${HOSTCOLOR}%}%M%{${COLOR_RESET}%} > %l > %{${PROMPT_LANG}%} > %{${PROMPT_CONDA}%} > %~ >%{${COLOR_RESET}%}"
+%{${COLOR_BG}%} %h%{${COLOR_RESET}%} %n > %{${HOSTCOLOR}%}%M%{${COLOR_RESET}%} > %l > %{${PROMPT_LANG}%} > %~ >%{${COLOR_RESET}%}"
+# %{${COLOR_BG}%} %h%{${COLOR_RESET}%} %n > %{${HOSTCOLOR}%}%M%{${COLOR_RESET}%} > %l > %{${PROMPT_LANG}%} > %{${PROMPT_CONDA}%} > %~ >%{${COLOR_RESET}%}"
 
 precmd () {
     print -rP "$MY_PROMPT"
@@ -159,18 +160,18 @@ function zle-line-init zle-keymap-select {
             ;;
     esac
 
-    PS1="%{$terminfo_down_sc$PROMPT_2$terminfo[rc]%}% %# "
+    # local CONDA_ENV='root'
+    # local CONDA_COLOR=$'\e[30;48;5;030m'
+    # case ${CONDA_DEFAULT_ENV} in
+    #     myenv)
+    #         local CONDA_ENV='myenv'
+    #         local CONDA_COLOR=$'\e[30;48;5;132m'
+    #         ;;
+    # esac
+    # local PROMPT_CONDA=${CONDA_COLOR}${CONDA_ENV}${COLOR_RESET}
 
-    local CONDA_ENV='root'
-    local CONDA_COLOR=$'\e[30;48;5;030m'
-    case ${CONDA_DEFAULT_ENV} in
-        myenv)
-            local CONDA_ENV='myenv'
-            local CONDA_COLOR=$'\e[30;48;5;132m'
-            ;;
-    esac
-    local PROMPT_CONDA=${CONDA_COLOR}${CONDA_ENV}${COLOR_RESET}
-
+    PS1="%{$terminfo_down_sc$PROMPT_2$terminfo[rc]%}% %{$CONDA_DEFAULT_ENV%} %# "
+    # PS1="%{$terminfo_down_sc$PROMPT_2$terminfo[rc]%}% <%{$PROMPT_CONDA%}>%# "
     zle reset-prompt
 }
 
