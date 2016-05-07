@@ -1,5 +1,5 @@
 # my_zshrc
-# Version 26
+# Version 27
 #**************************************
 export EDITOR=vim
 
@@ -87,12 +87,11 @@ bindkey -M viins '^Y'  yank
 autoload -Uz colors; colors
 autoload -Uz terminfo
 
-local COLOR_FG=$'\e[38;5;034m'
-local COLOR_BG=$'\e[30;48;5;082m'
-local COLOR_00=$'\e[30;48;5;034m'
+local COLOR_FG=$'\e[38;5;030m'
+local COLOR_BG=$'\e[30;48;5;030m'
 local COLOR_RESET=$'\e[0m'
 
-case ${HOSTNAME} in 
+case ${HOSTNAME} in
     r*)
         local HOSTCOLOR=$'\e[30;48;5;132m'
         ;;
@@ -104,49 +103,48 @@ case ${HOSTNAME} in
         ;;
 esac
 
-local LANG_WORD=`echo ${LANG}`
-# local LANG_WORD=`echo ${LANG} | cut -c 7-`
-case ${LANG_WORD} in 
+case ${LANG} in
     ja_JP.UTF-8)
-    # UTF-8)
         local LANG_COLOR=$'\e[30;48;5;030m'
         ;;
     ja_JP.SJIS)
-    # SJIS)
         local LANG_COLOR=$'\e[30;48;5;132m'
         ;;
 esac
 local PROMPT_LANG=${LANG_COLOR}${LANG_WORD}${COLOR_RESET}
 
-if [ -x "`which conda`" ]; then
-    local CONDA_ENV=`conda env list | grep '\*' | awk '{print $1}'`
-    case ${CONDA_ENV} in
-        root)
-            local CONDA_COLOR=$'\e[30;48;5;030m'
-            ;;
-        myenv)
-            local CONDA_COLOR=$'\e[30;48;5;132m'
-            ;;
-    esac
-else
-    local CONDA_ENV='no_conda'
-    local CONDA_COLOR=$'\e[30;48;5;030m'
-fi
+# if [ -x "`which conda`" ]; then
+#     local CONDA_ENV=`conda env list | grep '\*' | awk '{print $1}'`
+#     case ${CONDA_ENV} in
+#         root)
+#             local CONDA_COLOR=$'\e[30;48;5;030m'
+#             ;;
+#         myenv)
+#             local CONDA_COLOR=$'\e[30;48;5;132m'
+#             ;;
+#     esac
+# else
+#     local CONDA_ENV='no_conda'
+#     local CONDA_COLOR=$'\e[30;48;5;030m'
+# fi
+# local PROMPT_CONDA=${CONDA_COLOR}${CONDA_ENV}${COLOR_RESET}
+
+local CONDA_ENV='root'
+local CONDA_COLOR=$'\e[30;48;5;030m'
 local PROMPT_CONDA=${CONDA_COLOR}${CONDA_ENV}${COLOR_RESET}
 
 local MY_PROMPT="
-%{${COLOR_00}%}  %h %{${COLOR_RESET}%}%{${COLOR_FG}%} %n > %{${COLOR_RESET}%}%{${HOSTCOLOR}%}%M%{${COLOR_RESET}%}%{${COLOR_FG}%} > %l > %{${PROMPT_LANG}%} > %{${PROMPT_CONDA}%} > %{${COLOR_FG}%}%~ >%{${COLOR_RESET}%}"
-# %{${COLOR_00}%}  %h %{${COLOR_RESET}%}%{${COLOR_FG}%} > %W > %T > %n > %{${COLOR_RESET}%}%{${HOSTCOLOR}%}%M%{${COLOR_RESET}%}%{${COLOR_FG}%} > %l > %{${PROMPT_LANG}%} > %{${COLOR_FG}%}%d >%{${COLOR_RESET}%}"
+%{${COLOR_BG}%} %h%{${COLOR_RESET}%} %n > %{${HOSTCOLOR}%}%M%{${COLOR_RESET}%} > %l > %{${PROMPT_LANG}%} > %{${PROMPT_CONDA}%} > %~ >%{${COLOR_RESET}%}"
+
+precmd () {
+    print -rP "$MY_PROMPT"
+}
 
 PROMPT2="%_%%"
 SPROMT="${fg[red]}>>${reset_color}"
 
 
 terminfo_down_sc=$terminfo[cud1]$terminfo[cuu1]$terminfo[sc]$terminfo[cud1]
-
-precmd () {
-    print -rP "$MY_PROMPT"
-}
 
 function zle-line-init zle-keymap-select {
     case ${KEYMAP} in
@@ -161,7 +159,18 @@ function zle-line-init zle-keymap-select {
             ;;
     esac
 
-    PS1="%{$terminfo_down_sc$PROMPT_2$terminfo[rc]%}% %{${COLOR_FG}%}%#%{${COLOR_RESET}%} "
+    PS1="%{$terminfo_down_sc$PROMPT_2$terminfo[rc]%}% %# "
+
+    local CONDA_ENV='root'
+    local CONDA_COLOR=$'\e[30;48;5;030m'
+    case ${CONDA_DEFAULT_ENV} in
+        myenv)
+            local CONDA_ENV='myenv'
+            local CONDA_COLOR=$'\e[30;48;5;132m'
+            ;;
+    esac
+    local PROMPT_CONDA=${CONDA_COLOR}${CONDA_ENV}${COLOR_RESET}
+
     zle reset-prompt
 }
 
@@ -225,55 +234,7 @@ setopt no_beep
 setopt print_eight_bit
 setopt noautoremoveslash
 setopt magic_equal_subst
-
-# alias
-#**************************************
-case ${OSTYPE} in
-    linux*)
-        alias ip='ipython --profile default'
-        alias iq='ipython qtconsole --profile default --pylab=inline'
-        alias tmux='LD_LIBRARY_PATH=$HOME/local/lib tmux'
-        ;;
-    msys*)
-        alias jp='winpty jupyter console'
-        alias jq='jupyter qtconsole'
-        alias jn='jupyter notebook'
-        alias ip='winpty ipython --profile default --pylab=auto'
-        ;;
-esac
-
-alias v='vim'
-alias vi='vim'
-
-alias ls='ls --color=tty --show-control-chars -F'
-alias la='ls -a'
-alias ll='ls -al'
-alias l='ls'
-
-alias c='clear'
-alias d='diff'
-alias g='grep --color -i'
-alias h='history'
-alias m='more'
-alias p='pwd'
-
-alias rm='rm -i'
-alias he='head'
-alias ta='tail'
-alias tm='tmux'
-alias le='less -N'
-alias pa='ps -a'
-alias py='python'
-
-# global alias
-#**************************************
-alias -g G='| grep --color -i'
-alias -g H='| head'
-alias -g L='| less'
-alias -g M='| more'
-# alias -g P='| peco'
-alias -g S='| sed'
-alias -g T='| tail'
+setopt noclobber
 
 # functions
 #**************************************
@@ -301,6 +262,75 @@ function ic()
 	iconv -f SJIS -t UTF-8 $1 -o $1_ic_$$
 	mv $1_ic_$$ $1
 }
+
+function wincmd()
+{
+    CMD=$1
+    shift
+    $CMD $* 2>&1 | iconv -f CP932 -t UTF-8
+}
+
+# alias
+#**************************************
+case ${OSTYPE} in
+    linux*)
+        alias ip='ipython --profile default'
+        alias iq='ipython qtconsole --profile default --pylab=inline'
+        alias tmux='LD_LIBRARY_PATH=$HOME/local/lib tmux'
+        ;;
+    msys*)
+        alias jp='winpty jupyter console'
+        alias jq='jupyter qtconsole'
+        alias jn='jupyter notebook'
+        alias ip='winpty ipython --profile default --pylab=auto'
+        ;;
+esac
+
+case ${LANG} in
+    ja_JP.UTF-8)
+        alias ipconfig='wincmd ipconfig'
+        alias netstat='wincmd netstat'
+        alias netsh='wincmd netsh'
+        alias ping='wincmd /c/Windows/System32/ping'
+        ;;
+    ja_JP.SJIS)
+        ;;
+esac
+
+alias v='vim'
+alias vi='vim'
+
+alias ls='ls --color=tty --show-control-chars -F'
+alias la='ls -a'
+alias ll='ls -al'
+alias l='ls'
+
+alias c='clear'
+alias d='diff'
+alias g='grep --color -i'
+alias h='history'
+alias m='more'
+alias p='pwd'
+
+alias df='df -h'
+alias du='du -h'
+alias he='head'
+alias le='less -N'
+alias pa='ps -a'
+alias py='python'
+alias rm='rm -i'
+alias ta='tail'
+alias tm='tmux'
+
+# global alias
+#**************************************
+alias -g G='| grep --color -i'
+alias -g H='| head'
+alias -g L='| less'
+alias -g M='| more'
+# alias -g P='| peco'
+alias -g S='| sed'
+alias -g T='| tail'
 
 # Python
 #**************************************
