@@ -1,5 +1,5 @@
 # my_zshrc
-# Version 29
+# Version 30
 #**************************************
 export EDITOR=vim
 
@@ -223,7 +223,7 @@ function settitle ()
 # }
 
 function chpwd() {
-  settitle `pwd` && ls
+  settitle `pwd` && ls --color=tty --show-control-chars -F
 }
 
 function ic()
