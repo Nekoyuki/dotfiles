@@ -1,5 +1,5 @@
 # my_zshrc
-# Version 30
+# Version 31
 #**************************************
 export EDITOR=vim
 
@@ -275,6 +275,7 @@ alias la='ls -a'
 alias ll='ls -al'
 alias l='ls'
 
+alias a='atom'
 alias c='clear'
 alias d='diff'
 alias g='grep --color -i'
@@ -385,6 +386,18 @@ if [ -x "`which peco`" ]; then
             ;;
     esac
 fi
+
+# ATOM
+#**************************************
+case ${OSTYPE} in
+    linux*)
+        ;;
+    msys*)
+        if [ -e "/c/Users/$USER/AppData/Local/atom/bin" ]; then
+            export PATH="/c/Users/$USER/AppData/Local/atom/bin:"$PATH
+        fi
+        ;;
+esac
 
 # zplug
 #**************************************
