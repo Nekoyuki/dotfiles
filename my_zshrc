@@ -1,5 +1,5 @@
 # my_zshrc
-# Version 31
+# Version 32
 #**************************************
 export EDITOR=vim
 
@@ -293,8 +293,12 @@ alias rm='rm -i'
 alias ta='tail'
 alias tm='tmux'
 
+alias csvc='csvcut'
+alias csvl='csvlook'
+
 # global alias
 #**************************************
+alias -g C='| csvlook'
 alias -g G='| grep --color -i'
 alias -g H='| head'
 alias -g L='| less'
