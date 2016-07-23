@@ -1,5 +1,5 @@
 # my_zshrc
-# Version 32
+# Version 33
 #**************************************
 export EDITOR=vim
 
@@ -162,7 +162,7 @@ HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 setopt hist_ignore_dups
-setopt share_history
+# setopt share_history
 setopt hist_ignore_space
 setopt hist_reduce_blanks
 setopt auto_pushd
@@ -185,7 +185,7 @@ setopt auto_cd
 
 # remove
 #**************************************
-setopt rm_star_wait
+# setopt rm_star_wait
 
 # word
 #**************************************
