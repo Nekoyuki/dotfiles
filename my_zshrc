@@ -1,5 +1,5 @@
 # my_zshrc
-# Version 33
+# Version 35
 #**************************************
 export EDITOR=vim
 
@@ -275,7 +275,7 @@ alias la='ls -a'
 alias ll='ls -al'
 alias l='ls'
 
-alias a='atom'
+alias a='/c/Users/$USER/AppData/Local/atom/app-1.8.0/atom.exe'
 alias c='clear'
 alias d='diff'
 alias g='grep --color -i'
@@ -283,6 +283,7 @@ alias h='history'
 alias m='more'
 alias p='pwd'
 
+alias cr='chrome'
 alias df='df -h'
 alias du='du -h'
 alias he='head'
@@ -295,6 +296,7 @@ alias tm='tmux'
 
 alias csvc='csvcut'
 alias csvl='csvlook'
+alias csvg='csvgrep'
 
 # global alias
 #**************************************
@@ -393,12 +395,24 @@ fi
 
 # ATOM
 #**************************************
+# case ${OSTYPE} in
+#     linux*)
+#         ;;
+#     msys*)
+#         if [ -e "/c/Users/$USER/AppData/Local/atom/bin" ]; then
+#             export PATH="/c/Users/$USER/AppData/Local/atom/bin:"$PATH
+#         fi
+#         ;;
+# esac
+
+# Chrome
+#**************************************
 case ${OSTYPE} in
     linux*)
         ;;
     msys*)
-        if [ -e "/c/Users/$USER/AppData/Local/atom/bin" ]; then
-            export PATH="/c/Users/$USER/AppData/Local/atom/bin:"$PATH
+        if [ -e "/c/\Program Files (x86)/Google/Chrome/Application" ]; then
+            export PATH="/c/\Program Files (x86)/Google/Chrome/Application:"$PATH
         fi
         ;;
 esac
