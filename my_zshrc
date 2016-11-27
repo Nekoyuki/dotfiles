@@ -283,6 +283,7 @@ alias h='history'
 alias m='more'
 alias p='pwd'
 
+# alias ..='cd ..'
 alias cr='chrome'
 alias df='df -h'
 alias du='du -h'
