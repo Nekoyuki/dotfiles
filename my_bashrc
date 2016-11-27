@@ -1,5 +1,5 @@
 # my_bashrc
-# Version 3
+# Version 5
 #**************************************
 export EDITOR=vim
 
@@ -138,6 +138,7 @@ alias le='less -N'
 alias pa='ps -a'
 alias py='python'
 alias rm='rm -i'
+alias so='source'
 alias ta='tail'
 alias tm='tmux'
 
