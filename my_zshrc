@@ -1,5 +1,5 @@
 # my_zshrc
-# Version 35
+# Version 36
 #**************************************
 export EDITOR=vim
 
@@ -317,7 +317,7 @@ case ${OSTYPE} in
     msys*)
         if [ -e "/c/Anaconda3/python" ]; then
             export PATH='/c/Anaconda3:/c/Anaconda3/Scripts:'$PATH
-            export PYTHONPATH='/c/Anaconda3/Lib/site-packages'
+            # export PYTHONPATH='/c/Anaconda3/Lib/site-packages'
         fi
         ;;
 esac
