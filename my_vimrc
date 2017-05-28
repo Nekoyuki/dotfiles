@@ -1,5 +1,5 @@
 " my_vimrc
-" Ver.19
+" Ver.20
 " ----------------------------------------------
 
 " OSTYPE
@@ -155,6 +155,12 @@ let g:indent_guides_guide_size = 1
 " ----------------------------------------------
 let g:jedi#popup_on_dot=0
 let g:jedi#force_py_version = 3
+
+if has('python3')
+    let g:jedi#force_py_version = 3
+elseif has ('python')
+    let g:jedi#force_py_version = 2
+endif
 
 " Lightline
 " ----------------------------------------------
