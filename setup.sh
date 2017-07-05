@@ -1,4 +1,19 @@
 #!/bin/sh
+# setup.sh
+# Version 1
+#*************************************************
+
+DATE = `date +%y%m%d`
+
+mv ~/.bashrc ~/.bashrc_org_${DATE}
+ln -sf ~/dotfiles/home_dotfiles/bashrc ~/.bashrc
+
+mv ~/.zshrc ~/.zshrc_org_${DATE}
+ln -sf ~/dotfiles/home_dotfiles/zshrc ~/.zshrc
+
+mv ~/.vimrc ~/.vimrc_org_${DATE}
+ln -sf ~/dotfiles/home_dotfiles/vimrc ~/.vimrc
+
 # ln -sf ~/dotfiles/my_vimrc ~/.vimrc
 # ln -sf ~/dotfiles/my_minttyrc ~/.minttyrc
 ln -sf ~/dotfiles/my_vimshrc ~/.vimshrc
