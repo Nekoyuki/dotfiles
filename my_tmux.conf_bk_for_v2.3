@@ -1,5 +1,5 @@
 # my_tmux.conf
-# Version 04, for v2.4
+# Version 03
 #**************************************
 
 # $Id: vim-keys.conf,v 1.2 2010-09-18 09:36:15 nicm Exp $
@@ -53,24 +53,15 @@ set -s escape-time 0
 bind v copy-mode
 # bind Space copy-mode
 bind p paste-buffer
-bind -T copy-mode-vi v send-keys -X begin-selection
-bind -T copy-mode-vi V send-keys -X select-line
-bind -T copy-mode-vi C-v send-keys -X rectangle-toggle
-bind -T copy-mode-vi y send-keys -X copy-selection
-# for v2.3
-# bind -t vi-copy v begin-selection
-# bind -t vi-copy V select-line
-# bind -t vi-copy C-v rectangle-toggle
-# bind -t vi-copy y copy-selection
+bind -t vi-copy v begin-selection
+bind -t vi-copy V select-line
+bind -t vi-copy C-v rectangle-toggle
+bind -t vi-copy y copy-selection
 
-if-shell 'test "$(uname -s | cut -c1-4)" = "MSYS"' 'bind -T copy-mode-vi y send-keys -X copy-pipe "cat > /dev/clipboard"'
+if-shell 'test "$(uname -s | cut -c1-4)" = "MSYS"' 'bind -t vi-copy y copy-pipe "cat > /dev/clipboard"'
 if-shell 'test "$(uname -s | cut -c1-4)" = "MSYS"' 'bind ] run "cat /dev/clipboard | tmux load-buffer - && tmux paste-buffer"'
-if-shell 'which xsel' 'bind -T copy-mode-vi y send-keys -X copy-pipe "xsel -ib"'
-# for v2.3
-# if-shell 'test "$(uname -s | cut -c1-4)" = "MSYS"' 'bind -t vi-copy y copy-pipe "cat > /dev/clipboard"'
-# if-shell 'test "$(uname -s | cut -c1-4)" = "MSYS"' 'bind ] run "cat /dev/clipboard | tmux load-buffer - && tmux paste-buffer"'
-# if-shell 'which xsel' 'bind -t vi-copy y copy-pipe "xsel -ib"'
-# # bind -t vi-copy y copy-pipe "cat > /dev/clipboard"
+if-shell 'which xsel' 'bind -t vi-copy y copy-pipe "xsel -ib"'
+# bind -t vi-copy y copy-pipe "cat > /dev/clipboard"
 
 # Mouse
 set-option -g mouse on
