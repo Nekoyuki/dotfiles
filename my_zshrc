@@ -1,5 +1,5 @@
 # my_zshrc
-# Version 39
+# Version 40
 #**************************************
 export EDITOR=vim
 
@@ -275,7 +275,7 @@ alias la='ls -a'
 alias ll='ls -al'
 alias l='ls'
 
-alias a='/c/Users/$USER/AppData/Local/atom/app-1.8.0/atom.exe'
+# alias a='/c/Users/$USER/AppData/Local/atom/app-1.8.0/atom.exe'
 alias c='clear'
 alias d='diff'
 alias g='grep --color -i'
@@ -342,7 +342,8 @@ esac
 #**************************************
 if [ -x "`which fzy`" ]; then
 # if [ -x "`which peco`" ]; then
-    PECO="fzy"
+    local PECO="fzy"
+    local PECO_OPT="-l 20"
 
     function peco-select-history() {
         local tac
@@ -351,9 +352,9 @@ if [ -x "`which fzy`" ]; then
         else
             tac="tail -r"
         fi
-        BUFFER=$(history -n 1 | eval $tac | awk '!a[$0]++' | $PECO --query "$LBUFFER")
+        BUFFER=$(history -n 1 | eval $tac | awk '!a[$0]++' | $PECO $PECO_OPT --query "$LBUFFER")
         CURSOR=$#BUFFER
-        zle clear-screen
+        # zle clear-screen
     }
 
     autoload -Uz is-at-least
@@ -367,19 +368,26 @@ if [ -x "`which fzy`" ]; then
     fi
     zle -N peco-select-history
 
+    function peco-select-history-number() {
+        BUFFER=$(history | $PECO $PECO_OPT | cut -d' ' -f 4-)
+        CURSOR=$#BUFFER
+        # zle clear-screen
+    }
+    zle -N peco-select-history-number
+
     function peco-cdr () {
-        local selected_dir=$(cdr -l | awk '{ print $2 }' | $PECO)
+        local selected_dir=$(cdr -l | awk '{ print $2 }' | awk '!a[$0]++' | $PECO $PECO_OPT)
         if [ -n "$selected_dir" ]; then
             BUFFER="cd ${selected_dir}"
             zle accept-line
         fi
-        zle clear-screen
+        # zle clear-screen
     }
     zle -N peco-cdr
 
     function peco-kill-process () {
-        ps -ef | $PECO | awk '{ print $2 }' | xargs kill
-        zle clear-screen
+        ps -ef | $PECO $PECO_OPT | awk '{ print $2 }' | xargs kill
+        # zle clear-screen
     }
     zle -N peco-kill-process
 
@@ -389,22 +397,9 @@ if [ -x "`which fzy`" ]; then
     alias pp='ps aux | fzy'
 
     bindkey '^r' peco-select-history
+    bindkey '^h' peco-select-history-number
     bindkey '^l' peco-cdr
     bindkey '^xk' peco-kill-process
-
-    # case ${OSTYPE} in
-    #     linux*)
-    #         alias -g P='| peco'
-    #         alias tp='top | peco'
-    #         alias pp='ps aux | peco'
-    #
-    #         bindkey '^r' peco-select-history
-    #         bindkey '^l' peco-cdr
-    #         bindkey '^xk' peco-kill-process
-    #         ;;
-    #     msys*)
-    #         ;;
-    # esac
 fi
 
 # ATOM
