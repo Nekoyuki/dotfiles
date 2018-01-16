@@ -1,5 +1,5 @@
 # my_zshrc
-# Version 41
+# Version 42
 #**************************************
 export EDITOR=vim
 
@@ -398,11 +398,11 @@ if [ -x "`which fzy`" ]; then
     }
     zle -N peco-find
 
-    function peco-find-vim () {
-        find . | $PECO $PECO_OPT | xargs sh -c 'vim "$0" < /dev/tty'
-        # zle clear-screen
-    }
-    zle -N peco-find-vim
+    # function peco-find-vim () {
+    #     find . | $PECO $PECO_OPT | xargs sh -c 'vim "$0" < /dev/tty'
+    #     # zle clear-screen
+    # }
+    # zle -N peco-find-vim
 
     alias -g F='| fzy -l 20'
     # alias -g P='| peco'
@@ -413,8 +413,8 @@ if [ -x "`which fzy`" ]; then
     bindkey '^h' peco-select-history-number
     bindkey '^l' peco-cdr
     bindkey '^xk' peco-kill-process
-    bindkey '^f' peco-find
-    bindkey '^v' peco-find-vim
+    bindkey '^v' peco-find
+    # bindkey '^v' peco-find-vim
 fi
 
 # ATOM
