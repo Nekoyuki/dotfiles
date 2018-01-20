@@ -1,74 +1,57 @@
 " my_vimrc
-" Ver.23
+" Ver.22
 " ----------------------------------------------
 
 " OSTYPE
 " ----------------------------------------------
 let OSTYPE = system('uname')
 
-" Operation
-" ----------------------------------------------
-set wildmenu wildmode=list:longest		"On  list of complement result
-set clipboard=unnamed,autoselect        "On  clipboard
-set mouse=a							    "On  mouse
-set scrolloff=5                         "Keep a view of rows of top/bottom
-set sidescrolloff=16                    "Keep a view of columns of left/right
-set visualbell t_vb=                    "Off sound
-set novisualbell                        "Off sound
-set nocompatible                        "Off vim-vi compatible
-set whichwrap=b,s,h,l,<,>,[,],~         "On  allow cursor movement from a line-end to next line-begin, needed to be placed after nocompatible
+set notitle					    	"Off 'Thanks for flying Vim'
+" set showmatch						"On  highlight (), conflict with VimShell
 
-" Visual
-" ----------------------------------------------
-set notitle					    	    "Off 'Thanks for flying Vim'
-" set showmatch						    "On  highlight (), conflict with VimShell
-set ruler                               "On  ruler at the bottom to show the cursor location
-set number						        "On  number
-set showcmd						        "Show command at the bottom row
-set laststatus=2                        "On  status line always
-set statusline=%F%h%=%p                 "Contents of status line
-"set list							    "On  invisible char
-syntax enable						    "On  syntax highlight
+set nocompatible                    "Off vim-vi compatible
 
+set tabstop=4						"Tab = blank * 4
+set autoindent						"Tab = blank * 4
+set expandtab						"Tab = blank * 4
+set shiftwidth=4					"Tab = blank * 4
+set softtabstop=4					"Tab = blank * 4
+
+set smartindent						"
+"set list							"On  invisible char
+set mouse=a							"On  mouse
+set visualbell t_vb=                "Off sound
+set clipboard=unnamed,autoselect    "On  clipboard
+
+syntax enable						"On  syntax highlight
 " highlight Normal ctermbg=none ctermfg=black                                " Background color
 " highlight StatusLine term=none cterm=none ctermfg=grey ctermbg=black
 " highlight CursorLine term=none cterm=none ctermfg=none ctermbg=lightgray    " Cursor line color
+
 "set cursorline                         "On  highlight cursor row
 set nocursorline                        "Off highlight cursor row
 autocmd InsertEnter,InsertLeave * set cursorline!       " On  cursor row highlight when insert mode
 "set cursorcolumn                       "On  highlight cursor column
+set ruler                               "On  ruler at the bottom to show the cursor location
+set whichwrap=b,s,h,l,<,>,[,],~         "On  allow cursor movement from a line-end to next line-begin
 
-" Indent
-" ----------------------------------------------
-set autoindent						    "On Autoindent
-set smartindent						    "
-set tabstop=4						    "Tab = blank * 4
-set expandtab						    "Tab = blank * 4
-set shiftwidth=4					    "Tab = blank * 4
-set softtabstop=4					    "Tab = blank * 4
+set number						        "On  number
+set showcmd						        "Show command at the bottom row
+set laststatus=2                        "On  status line always
+set statusline=%F%h%=%p                 "Contents of status line
 
-" Search
-" ----------------------------------------------
+set wildmenu wildmode=list:longest		"On  list of complement result
+
 set incsearch					        "On  incremental search
 set ignorecase					        "On  ignore the difference between large and small char
 set smartcase                           "On  distinguish upper/lower case
 set hlsearch                            "On  keyword search highlight
 "set nohlsearch                         "Off keyword search highlight
-set wrapscan                            "On  Back to the top when search reaches the end
 
-" Bakup/Swap
-" ----------------------------------------------
+set wrapscan
 set nobackup
 set noswapfile
-" set autoread                            "On Reread when the file is updated outside
-" set confirm                             "On Confirm when the file is not saved yet
-
-" Wrap
-" ----------------------------------------------
 set nowrap
-" autocmd BufRead,BufNewFile *.html set nowrap
-" autocmd BufRead,BufNewFile *.js set nowrap
-" autocmd BufRead,BufNewFile *.css set nowrap
 
 " Encode
 " ----------------------------------------------
@@ -90,7 +73,7 @@ set nowrap
 "     set termencoding=
 " endif
 
-" Keymap
+" keymap
 " ----------------------------------------------
 inoremap <silent> jj <ESC>
 
@@ -125,14 +108,6 @@ nnoremap g# g#zz
 
 nmap <silent> <Esc><Esc> :nohlsearch<CR>	"Cancel highligh
 
-" Omnifunc
-" ----------------------------------------------
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete     "Off due to conflict with jedi-vim
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
 " NeoBundle
 " ----------------------------------------------
 " set nocompatible
@@ -165,6 +140,14 @@ call neobundle#end()
 
 filetype plugin indent on
 
+" Omnifunc
+" ----------------------------------------------
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete     "Off due to conflict with jedi-vim
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
 " Python
 " ----------------------------------------------
 filetype plugin on
@@ -173,7 +156,7 @@ autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,exc
 autocmd FileType python setl expandtab tabstop=4 shiftwidth=4 softtabstop=4
 autocmd FileType python let g:pydiction_location = '~/.vim/bundle/pydiction/complete-dict'
 
-" Javascript
+" javascript
 " ----------------------------------------------
 
 " Markdown
