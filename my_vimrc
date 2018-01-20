@@ -1,5 +1,5 @@
 " my_vimrc
-" Ver.26
+" Ver.27
 " ----------------------------------------------
 
 " OSTYPE
@@ -195,6 +195,20 @@ let g:markdown_fenced_languages = [
 \  'c',
 \  'php'
 \]
+
+" Unite.vim
+" ----------------------------------------------
+let g:unite_enable_start_insert=0                                       "Start with insert-mode
+let g:unite_source_history_yank_enable =1
+let g:unite_source_file_mru_limit = 200
+nnoremap <silent> <Space>uy :Unite history/yank<CR>
+nnoremap <silent> <Space>ub :Unite buffer<CR>
+nnoremap <silent> <Space>uf :UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap <silent> <Space>ur :Unite -buffer-name=register register<CR>
+nnoremap <silent> <Space>um :Unite file_mru buffer<CR>
+nnoremap <silent> <Space>uc :Unite command<CR>
+autocmd FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
+autocmd FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 
 " vim-indent-guides
 " ----------------------------------------------
