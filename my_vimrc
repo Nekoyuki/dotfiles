@@ -1,5 +1,5 @@
 " my_vimrc
-" Ver.25
+" Ver.26
 " ----------------------------------------------
 
 " OSTYPE
@@ -150,6 +150,7 @@ NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'rhysd/clever-f.vim'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/unite.vim'
 NeoBundle 'gorodinskiy/vim-colorsque'
 NeoBundle 'pangloss/vim-javascript'
 
