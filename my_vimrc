@@ -1,5 +1,5 @@
 " my_vimrc
-" Ver.23
+" Ver.25
 " ----------------------------------------------
 
 " OSTYPE
@@ -125,14 +125,6 @@ nnoremap g# g#zz
 
 nmap <silent> <Esc><Esc> :nohlsearch<CR>	"Cancel highligh
 
-" Omnifunc
-" ----------------------------------------------
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete     "Off due to conflict with jedi-vim
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
 " NeoBundle
 " ----------------------------------------------
 " set nocompatible
@@ -163,11 +155,20 @@ NeoBundle 'pangloss/vim-javascript'
 
 call neobundle#end()
 
+filetype plugin on
 filetype plugin indent on
+
+" Omnifunc
+" ----------------------------------------------
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete     "Off due to conflict with jedi-vim
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " Python
 " ----------------------------------------------
-filetype plugin on
+" filetype plugin on
 autocmd FileType python setl autoindent
 autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 autocmd FileType python setl expandtab tabstop=4 shiftwidth=4 softtabstop=4
