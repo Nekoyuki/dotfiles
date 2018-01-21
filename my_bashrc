@@ -1,5 +1,14 @@
 # my_bashrc
-# Version 8
+# Version 10
+#**************************************
+
+# PATH
+#**************************************
+if [ -e "$HOME/local/bin" ]; then
+    export PATH="$HOME/local/bin:"$PATH
+fi
+
+# LANG
 #**************************************
 export EDITOR=vim
 

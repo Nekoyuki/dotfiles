@@ -1,5 +1,14 @@
 # my_zshrc
-# Version 42
+# Version 43
+#**************************************
+#
+# PATH
+#**************************************
+if [ -e "$HOME/local/bin" ]; then
+    export PATH="$HOME/local/bin:"$PATH
+fi
+
+# LANG
 #**************************************
 export EDITOR=vim
 
@@ -113,8 +122,11 @@ case ${LANG} in
 esac
 local PROMPT_LANG=${LANG_COLOR}${LANG}${COLOR_RESET}
 
-local MY_PROMPT="
-%{${COLOR_BG}%} %h%{${COLOR_RESET}%} %n > %{${HOSTCOLOR}%}%M%{${COLOR_RESET}%} > %l > %{${PROMPT_LANG}%} > %~ >%{${COLOR_RESET}%}"
+if [ -v BASHRC_GOOGLE_PATH ]; then
+    local MY_PROMPT="%{${COLOR_BG}%} %h%{${COLOR_RESET}%} %n > %l > %{${PROMPT_LANG}%} > %~ >%{${COLOR_RESET}%}"
+else
+    local MY_PROMPT="%{${COLOR_BG}%} %h%{${COLOR_RESET}%} %n > %{${HOSTCOLOR}%}%M%{${COLOR_RESET}%} > %l > %{${PROMPT_LANG}%} > %~ >%{${COLOR_RESET}%}"
+fi
 
 precmd () {
     print -rP "$MY_PROMPT"
