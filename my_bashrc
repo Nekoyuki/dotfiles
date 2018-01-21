@@ -1,5 +1,5 @@
 # my_bashrc
-# Version 7
+# Version 8
 #**************************************
 export EDITOR=vim
 
@@ -54,7 +54,11 @@ export TERM=xterm-256color
 
 # prompt
 #**************************************
-export PS1="\[\033[1;34m\][\!:\u@\h:\W]>\[\033[0m\]"
+if [ -v BASHRC_GOOGLE_PATH ]; then
+    export PS1="\[\033[1;34m\][\!:\u@:\W]>\[\033[0m\]"
+else
+    export PS1="\[\033[1;34m\][\!:\u@\h:\W]>\[\033[0m\]"
+fi
 
 # completion
 #**************************************
@@ -130,7 +134,7 @@ alias la='ls -a'
 alias ll='ls -al'
 alias l='ls'
 
-alias a='/c/Users/$USER/AppData/Local/atom/app-1.8.0/atom.exe'
+# alias a='/c/Users/$USER/AppData/Local/atom/app-1.8.0/atom.exe'
 alias c='clear'
 alias d='diff'
 alias g='grep --color -i'
