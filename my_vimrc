@@ -1,5 +1,5 @@
 " my_vimrc
-" Ver.28
+" Ver.29
 " ----------------------------------------------
 
 " OSTYPE
@@ -14,7 +14,7 @@ set mouse=a							    "On  mouse
 set scrolloff=5                         "Keep a view of rows of top/bottom
 set sidescrolloff=16                    "Keep a view of columns of left/right
 set visualbell t_vb=                    "Off sound
-set novisualbell                        "Off sound
+set visualbell                          "Off sound
 set nocompatible                        "Off vim-vi compatible
 set whichwrap=b,s,h,l,<,>,[,],~         "On  allow cursor movement from a line-end to next line-begin, needed to be placed after nocompatible
 
