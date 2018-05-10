@@ -1,5 +1,5 @@
 # my_bashrc
-# Version 10
+# Version 11
 #**************************************
 
 # PATH
@@ -16,19 +16,19 @@ case ${OSTYPE} in
     linux*)
         # export SHELL=${HOME}/local/bin/zsh
 
-        export LANG="ja_JP.UTF-8"
-        # export LC_CTYPE="ja_JP.UTF-8"
-        # export LC_NUMERIC="ja_JP.UTF-8"
-        # export LC_TIME="ja_JP.UTF-8"
-        # export LC_COLLATE="ja_JP.UTF-8"
-        export LC_MONETARY="ja_JP.UTF-8"
-        # export LC_MESSAGES="ja_JP.UTF-8"
-        export LC_PAPER="ja_JP.UTF-8"
-        export LC_NAME="ja_JP.UTF-8"
-        export LC_ADDRESS="ja_JP.UTF-8"
-        export LC_TELEPHONE="ja_JP.UTF-8"
-        export LC_MEASUREMENT="ja_JP.UTF-8"
-        export LC_IDENTIFICATION="ja_JP.UTF-8"
+        export LANG="en_US.UTF-8"
+        # export LC_CTYPE="en_US.UTF-8"
+        # export LC_NUMERIC="en_US.UTF-8"
+        # export LC_TIME="en_US.UTF-8"
+        # export LC_COLLATE="en_US.UTF-8"
+        export LC_MONETARY="en_US.UTF-8"
+        # export LC_MESSAGES="en_US.UTF-8"
+        export LC_PAPER="en_US.UTF-8"
+        export LC_NAME="en_US.UTF-8"
+        export LC_ADDRESS="en_US.UTF-8"
+        export LC_TELEPHONE="en_US.UTF-8"
+        export LC_MEASUREMENT="en_US.UTF-8"
+        export LC_IDENTIFICATION="en_US.UTF-8"
 
         if [ "${BASHRC_GOOGLE_PATH}" = "" ]; then
             export LC_CTYPE="ja_JP.UTF-8"
@@ -63,7 +63,7 @@ export TERM=xterm-256color
 
 # prompt
 #**************************************
-if [ -v BASHRC_GOOGLE_PATH ]; then
+if [ -z "${BASHRC_GOOGLE_PATH}" ]; then
     export PS1="\[\033[1;34m\][\!:\u@:\W]>\[\033[0m\]"
 else
     export PS1="\[\033[1;34m\][\!:\u@\h:\W]>\[\033[0m\]"
