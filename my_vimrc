@@ -1,5 +1,5 @@
 " my_vimrc
-" Ver.31
+" Ver.32
 " ----------------------------------------------
 
 " OSTYPE
@@ -146,8 +146,8 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle 'bronson/vim-trailing-whitespace'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'rhysd/clever-f.vim'
-NeoBundle 'Shougo/vimshell'
-NeoBundle 'Shougo/vimproc'
+"NeoBundle 'Shougo/vimshell'
+"NeoBundle 'Shougo/vimproc'
 NeoBundle 'gorodinskiy/vim-colorsque'
 NeoBundle 'terryma/vim-expand-region'
 NeoBundleLazy 'Shougo/unite.vim', {'autoload': {'commands':['Unite']}}
