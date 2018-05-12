@@ -1,5 +1,5 @@
 " my_vimrc
-" Ver.30
+" Ver.31
 " ----------------------------------------------
 
 " OSTYPE
@@ -13,10 +13,11 @@ set clipboard=unnamed,autoselect        "On  clipboard
 set mouse=a							    "On  mouse
 set scrolloff=5                         "Keep a view of rows of top/bottom
 set sidescrolloff=16                    "Keep a view of columns of left/right
-set visualbell t_vb=                    "Off sound
-set visualbell                          "Off sound
+set t_vb=                               "Off sound
+set novisualbell                        "Off sound
 set nocompatible                        "Off vim-vi compatible
 set whichwrap=b,s,h,l,<,>,[,],~         "On  allow cursor movement from a line-end to next line-begin, needed to be placed after nocompatible
+set matchpairs& matchpairs+=<:>         "Add <> for match pairs
 
 " Visual
 " ----------------------------------------------
@@ -137,9 +138,6 @@ let g:neobundle_default_git_protocol='https'
 
 NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'nathanaelkane/vim-indent-guides'
-NeoBundle 'davidhalter/jedi-vim'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'nachumk/systemverilog.vim'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'tpope/vim-surround'
@@ -150,10 +148,13 @@ NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'rhysd/clever-f.vim'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/vimproc'
-NeoBundle 'Shougo/unite.vim'
 NeoBundle 'gorodinskiy/vim-colorsque'
-NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'terryma/vim-expand-region'
+NeoBundleLazy 'Shougo/unite.vim', {'autoload': {'commands':['Unite']}}
+NeoBundleLazy 'scrooloose/nerdtree', {'autoload': {'commands':['NERDTree']}}
+NeoBundleLazy 'davidhalter/jedi-vim', {'autoload': {'filetypes':['python']}}
+NeoBundleLazy 'pangloss/vim-javascript', {'autoload': {'filetypes':['javascript']}}
+NeoBundleLazy 'nachumk/systemverilog.vim', {'autoload': {'filetypes':['verilog']}}
 
 call neobundle#end()
 
