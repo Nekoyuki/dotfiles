@@ -1,5 +1,5 @@
 " my_vimrc
-" Ver.29
+" Ver.30
 " ----------------------------------------------
 
 " OSTYPE
@@ -153,6 +153,7 @@ NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'gorodinskiy/vim-colorsque'
 NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'terryma/vim-expand-region'
 
 call neobundle#end()
 
@@ -277,4 +278,9 @@ let g:vimshell_user_prompt = '"(" . getcwd() . ") --- (" . $USER . "@" . hostnam
 nnoremap <silent> vs :VimShell<CR>
 nnoremap <silent> vss :VimShellSendString<CR>
 nnoremap <silent> vip :VimShellInteractive ipython<CR>
+
+" vim-expand-region
+" ----------------------------------------------
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
 
