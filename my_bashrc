@@ -199,6 +199,17 @@ esac
 
 # peco
 #**************************************
+if which fzy >/dev/null; then
+    PECO="fzy"
+    PECO_OPT="-l 20"
+
+    peco-select-history() {
+        declare l=$(HISTTIMEFORMAT=  history | LC_ALL=C tac | cut -d' ' -f 4- |  awk '!a[$0]++' | $PECO $PECO_OPT --query "$READLINE_LINE")
+        READLINE_LINE="$l"
+        READLINE_POINT=${#l}
+    }
+    bind -x '"\C-r": peco-select-history'
+fi
 
 # ATOM
 #**************************************
