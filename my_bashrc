@@ -1,5 +1,5 @@
 # my_bashrc
-# Version 11
+# Version 12
 #**************************************
 
 # PATH
@@ -199,7 +199,7 @@ esac
 
 # peco
 #**************************************
-if which fzy >/dev/null; then
+if which fzy >& /dev/null && [[ -t 1 ]]; then
     PECO="fzy"
     PECO_OPT="-l 20"
 
