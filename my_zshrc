@@ -1,5 +1,5 @@
 # my_zshrc
-# Version 45
+# Version 46
 #**************************************
 #
 # PATH
@@ -377,7 +377,7 @@ if [ -x "`which fzy`" ]; then
     zle -N peco-select-history
 
     function peco-select-history-number() {
-        BUFFER=$(history -100 | sort -k1,1nr | $PECO $PECO_OPT | cut -d' ' -f 4-)
+        BUFFER=$(history -100 | sort -k1,1nr | $PECO $PECO_OPT | cut -b 8-)
         CURSOR=$#BUFFER
         # zle clear-screen
     }
