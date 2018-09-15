@@ -1,5 +1,5 @@
 # my_zshrc
-# Version 46
+# Version 47
 #**************************************
 #
 # PATH
@@ -290,7 +290,7 @@ alias la='ls -a'
 alias ll='ls -al'
 alias l='ls'
 
-# alias a='/c/Users/$USER/AppData/Local/atom/app-1.8.0/atom.exe'
+alias a='/c/Users/$USER/AppData/Local/atom/bin/atom.cmd'
 alias c='clear'
 alias d='diff'
 alias g='grep --color -i'
