@@ -1,5 +1,5 @@
 # my_zshrc
-# Version 48
+# Version 49
 #**************************************
 #
 # PATH
@@ -96,39 +96,62 @@ bindkey -M viins '^Y'  yank
 autoload -Uz colors; colors
 autoload -Uz terminfo
 
-local COLOR_FG=$'\e[38;5;030m'
-local COLOR_BG=$'\e[30;48;5;030m'
-local COLOR_RESET=$'\e[0m'
+case ${LANG} in
+    *.UTF-8)
+        S_LEFT_BOLD=""
+        S_LEFT_THIN=""
+        S_RIGHT_BOLD=""
+        S_RIGHT_THIN=""
+        ;;
+    *.SJIS)
+        S_LEFT_BOLD=" "
+        S_LEFT_THIN=" "
+        S_RIGHT_BOLD=" "
+        S_RIGHT_THIN=" "
+        ;;
+esac
+
+local COLOR_FG=$'%F{030}'
+local COLOR_BG=$'%K{030}'
+local COLOR_RESET=$'%k%f'
+# local COLOR_FG=$'\e[38;5;030m'
+# local COLOR_BG=$'\e[30;48;5;030m'
+# local COLOR_RESET=$'\e[0m'
+
+local HISTORY_NAME="%K{002}%F{008} %h ${S_RIGHT_THIN} %n %K{008}%F{002}${S_RIGHT_BOLD}${COLOR_RESET}"
 
 case ${HOSTNAME} in
     r*)
-        local HOSTCOLOR=$'\e[30;48;5;132m'
+        local HOSTCOLOR="%K{132}%F{008}${S_RIGHT_BOLD} ${HOSTNAME} %K{008}%F{132}${S_RIGHT_BOLD}"
         ;;
     N*)
-        local HOSTCOLOR=$'\e[30;48;5;030m'
+        local HOSTCOLOR="%K{245}%F{008}${S_RIGHT_BOLD} ${HOSTNAME} %K{008}%F{245}${S_RIGHT_BOLD}"
         ;;
     h*)
-        local HOSTCOLOR=$'\e[30;48;5;030m'
+        local HOSTCOLOR="%K{245}%F{008}${S_RIGHT_BOLD} ${HOSTNAME} %K{008}%F{245}${S_RIGHT_BOLD}"
         ;;
 esac
 
 case ${LANG} in
     ja_JP.UTF-8)
-        local LANG_COLOR=$'\e[30;48;5;030m'
+        local PROMPT_LANG="%K{245}%F{008}${S_RIGHT_BOLD} ${LANG} %K{008}%F{245}${S_RIGHT_BOLD}"
         ;;
     ja_JP.SJIS)
-        local LANG_COLOR=$'\e[30;48;5;132m'
+        local PROMPT_LANG="%K{132}%F{008}${S_RIGHT_BOLD} ${LANG} %K{008}%F{132}${S_RIGHT_BOLD}"
         ;;
     en_US.UTF-8)
-        local LANG_COLOR=$'\e[30;48;5;081m'
+        local PROMPT_LANG="%K{081}%F{008}${S_RIGHT_BOLD} ${LANG} %K{008}%F{081}${S_RIGHT_BOLD}"
         ;;
 esac
-local PROMPT_LANG=${LANG_COLOR}${LANG}${COLOR_RESET}
+# local PROMPT_LANG=${LANG_COLOR}${LANG}${COLOR_RESET}
+
+local TTY_COLOR="%K{245}%F{008}${S_RIGHT_BOLD} %l %K{008}%F{245}${S_RIGHT_BOLD}"
+local DIR_COLOR="%K{245}%F{008}${S_RIGHT_BOLD} %~ %K{008}%F{245}${S_RIGHT_BOLD}"
 
 if [ -v BASHRC_GOOGLE_PATH ]; then
     local MY_PROMPT="%{${COLOR_BG}%} %h%{${COLOR_RESET}%} %n > %l > %{${PROMPT_LANG}%} > %~ >%{${COLOR_RESET}%}"
 else
-    local MY_PROMPT="%{${COLOR_BG}%} %h%{${COLOR_RESET}%} %n > %{${HOSTCOLOR}%}%M%{${COLOR_RESET}%} > %l > %{${PROMPT_LANG}%} > %~ >%{${COLOR_RESET}%}"
+    local MY_PROMPT="${HISTORY_NAME}${HOSTCOLOR}${TTY_COLOR}${PROMPT_LANG}${DIR_COLOR}${COLOR_RESET}"
 fi
 
 precmd () {
@@ -144,17 +167,20 @@ terminfo_down_sc=$terminfo[cud1]$terminfo[cuu1]$terminfo[sc]$terminfo[cud1]
 function zle-line-init zle-keymap-select {
     case ${KEYMAP} in
         main|viins)
-            PROMPT_2="$fg[cyan]-- INSERT --$reset_color"
+            PROMPT_2="%K{002}%F{008} INSERT %K{008}%F{002}${S_RIGHT_BOLD}$reset_color"
+            # PROMPT_2="$fg[cyan]-- INSERT --$reset_color"
             ;;
         vicmd)
-            PROMPT_2="$fg[white]-- NORMAL --$reset_color"
+            PROMPT_2="%K{245}%F{008} NORMAL %K{008}%F{245}${S_RIGHT_BOLD}$reset_color"
+            # PROMPT_2="$fg[white]-- NORMAL --$reset_color"
             ;;
         vivis|vivli)
-            PROMPT_2="$fg[yellow]-- VISUAL --$reset_color"
+            PROMPT_2="%K{013}%F{008} VISUAL %K{008}%F{013}${S_RIGHT_BOLD}$reset_color"
+            # PROMPT_2="$fg[yellow]-- VISUAL --$reset_color"
             ;;
     esac
 
-    PS1="%{$terminfo_down_sc$PROMPT_2$terminfo[rc]%}% %{$CONDA_DEFAULT_ENV%} %# "
+    PS1="%{$terminfo_down_sc$PROMPT_2$terminfo[rc]%}% %{$CONDA_DEFAULT_ENV%} + "
     zle reset-prompt
 }
 
