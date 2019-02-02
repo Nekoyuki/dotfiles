@@ -1,5 +1,5 @@
 # my_zshrc
-# Version 47
+# Version 48
 #**************************************
 #
 # PATH
@@ -254,6 +254,26 @@ function wincmd()
     $CMD $* 2>&1 | iconv -f CP932 -t UTF-8
 }
 
+function anaconda()
+{
+    case ${OSTYPE} in
+        linux*)
+            ;;
+        msys*)
+            if [ -e "/c/Anaconda3/python" ]; then
+                export PATH='/c/Anaconda3:/c/Anaconda3/Scripts:'$PATH
+                export PYTHONPATH='/c/Anaconda3/Lib/site-packages'
+
+                alias py='winpty python'
+                alias jp='winpty jupyter console'
+                alias jq='winpty jupyter qtconsole'
+                alias jn='winpty jupyter notebook'
+                alias ip='winpty ipython --profile default --pylab=auto'
+            fi
+            ;;
+    esac
+}
+
 # alias
 #**************************************
 case ${OSTYPE} in
@@ -263,10 +283,10 @@ case ${OSTYPE} in
         alias tmux='LD_LIBRARY_PATH=$HOME/local/lib tmux'
         ;;
     msys*)
-        alias jp='winpty jupyter console'
-        alias jq='jupyter qtconsole'
-        alias jn='jupyter notebook'
-        alias ip='winpty ipython --profile default --pylab=auto'
+        # alias jp='winpty jupyter console'
+        # alias jq='jupyter qtconsole'
+        # alias jn='jupyter notebook'
+        # alias ip='winpty ipython --profile default --pylab=auto'
         ;;
 esac
 
@@ -329,16 +349,16 @@ alias -g T='| tail'
 
 # Python
 #**************************************
-case ${OSTYPE} in
-    linux*)
-        ;;
-    msys*)
-        if [ -e "/c/Anaconda3/python" ]; then
-            export PATH='/c/Anaconda3:/c/Anaconda3/Scripts:'$PATH
-            export PYTHONPATH='/c/Anaconda3/Lib/site-packages'
-        fi
-        ;;
-esac
+# case ${OSTYPE} in
+#     linux*)
+#         ;;
+#     msys*)
+#         if [ -e "/c/Anaconda3/python" ]; then
+#             export PATH='/c/Anaconda3:/c/Anaconda3/Scripts:'$PATH
+#             export PYTHONPATH='/c/Anaconda3/Lib/site-packages'
+#         fi
+#         ;;
+# esac
 
 # Go
 #**************************************
