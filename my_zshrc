@@ -1,5 +1,5 @@
 # my_zshrc
-# Version 49
+# Version 50
 #**************************************
 #
 # PATH
@@ -140,7 +140,7 @@ case ${LANG} in
         local PROMPT_LANG="%K{132}%F{008}${S_RIGHT_BOLD} ${LANG} %K{008}%F{132}${S_RIGHT_BOLD}"
         ;;
     en_US.UTF-8)
-        local PROMPT_LANG="%K{081}%F{008}${S_RIGHT_BOLD} ${LANG} %K{008}%F{081}${S_RIGHT_BOLD}"
+        local PROMPT_LANG="%K{002}%F{008}${S_RIGHT_BOLD} ${LANG} %K{008}%F{002}${S_RIGHT_BOLD}"
         ;;
 esac
 # local PROMPT_LANG=${LANG_COLOR}${LANG}${COLOR_RESET}
