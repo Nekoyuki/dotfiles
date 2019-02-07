@@ -1,5 +1,5 @@
 # my_zshrc
-# Version 50
+# Version 51
 #**************************************
 #
 # PATH
@@ -61,7 +61,7 @@ bindkey -v
 
 # keybinds by b4b4r07
 #**************************************
-. ~/.zplug/repos/b4b4r07/zsh-vimode-visual/zsh-vimode-visual.sh
+. ~/dotfiles/zsh-vimode-visual.zsh
 
 # keybinds
 #**************************************
@@ -123,6 +123,9 @@ local HISTORY_NAME="%K{002}%F{008} %h ${S_RIGHT_THIN} %n %K{008}%F{002}${S_RIGHT
 case ${HOSTNAME} in
     r*)
         local HOSTCOLOR="%K{132}%F{008}${S_RIGHT_BOLD} ${HOSTNAME} %K{008}%F{132}${S_RIGHT_BOLD}"
+        ;;
+    g*)
+        local HOSTCOLOR="%K{105}%F{008}${S_RIGHT_BOLD} ${HOSTNAME} %K{008}%F{105}${S_RIGHT_BOLD}"
         ;;
     N*)
         local HOSTCOLOR="%K{245}%F{008}${S_RIGHT_BOLD} ${HOSTNAME} %K{008}%F{245}${S_RIGHT_BOLD}"
@@ -498,12 +501,12 @@ esac
 # zplug
 #**************************************
 if [ -e "${HOME}/.zplug" ]; then
-    source ~/.zplug/zplug
+    source ~/.zplug/init.zsh
+    # source ~/.zplug/zplug
 
     zplug "zsh-users/zsh-syntax-highlighting"
     # zplug "hchbaw/opp.zsh"
     # zplug "b4b4r07/zsh-vimode-visual"
-
     # zplug "Valodim/zsh-prompt-powerline"
     # zplug "themes/agnoster", from:oh-my-zsh
 
