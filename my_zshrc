@@ -1,5 +1,5 @@
 # my_zshrc
-# Version 52
+# Version 53
 #**************************************
 #
 # PATH
@@ -10,13 +10,12 @@ fi
 
 # LANG
 #**************************************
+export SHELL=$(which zsh)
 export EDITOR=vim
 
 case ${OSTYPE} in
     linux*)
-        if [ -e "${HOME}/local/bin/zsh" ]; then
-            export SHELL=${HOME}/local/bin/zsh
-        fi
+        # export SHELL=$(which zsh)
 
         export LANG="en_US.UTF-8"
         export LC_CTYPE="en_US.UTF-8"
@@ -33,7 +32,7 @@ case ${OSTYPE} in
         export LC_IDENTIFICATION="en_US.UTF-8"
         ;;
     msys*)
-        export SHELL=/usr/bin/zsh
+        # export SHELL=/usr/bin/zsh
 
         case ${CONTITLE} in
             MSys2_UTF-8)
