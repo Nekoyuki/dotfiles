@@ -1,5 +1,5 @@
 # my_zshrc
-# Version 53
+# Version 54
 #**************************************
 #
 # PATH
@@ -468,7 +468,8 @@ if [ -x "`which fzy`" ]; then
     alias pp='ps aux | fzy'
 
     bindkey '^r' peco-select-history
-    bindkey '^h' peco-select-history-number
+    bindkey '^j' peco-select-history-number
+    # bindkey '^h' peco-select-history-number
     bindkey '^l' peco-cdr
     bindkey '^xk' peco-kill-process
     bindkey '^v' peco-find
