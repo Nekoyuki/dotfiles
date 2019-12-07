@@ -1,5 +1,5 @@
 # my_zshrc
-# Version 54
+# Version 55
 #**************************************
 #
 # PATH
@@ -252,6 +252,10 @@ setopt noclobber
 
 # functions
 #**************************************
+function path_remove ()  { export PATH=`echo -n $PATH | awk -v RS=: -v ORS=: '$0 != "'$1'"' | sed 's/:$//'`; }
+function path_append ()  { path_remove $1; export PATH="$PATH:$1"; }
+function path_prepend () { path_remove $1; export PATH="$1:$PATH"; }
+
 function hg(){ (head -1 $1 ; tail -n +2 $1 | grep $2) }
 
 function settitle ()
@@ -284,15 +288,40 @@ function wincmd()
     $CMD $* 2>&1 | iconv -f CP932 -t UTF-8
 }
 
-function anaconda()
+function ea()
 {
     case ${OSTYPE} in
         linux*)
             ;;
         msys*)
             if [ -e "/c/Anaconda3/python" ]; then
-                export PATH='/c/Anaconda3:/c/Anaconda3/Scripts:'$PATH
+                path_prepend '/c/Anaconda3/Scripts'
+                path_prepend '/c/Anaconda3'
+                # export PATH='/c/Anaconda3:/c/Anaconda3/Scripts:'$PATH
+                export PYTHONPATH_BACKUP=$PYTHONPATH
                 export PYTHONPATH='/c/Anaconda3/Lib/site-packages'
+
+                alias py='winpty python'
+                alias jp='winpty jupyter console'
+                alias jq='winpty jupyter qtconsole'
+                alias jn='winpty jupyter notebook'
+                alias ip='winpty ipython --profile default --pylab=auto'
+            fi
+            ;;
+    esac
+}
+
+function da()
+{
+    case ${OSTYPE} in
+        linux*)
+            ;;
+        msys*)
+            if [ -e "/c/Anaconda3/python" ]; then
+                path_remove '/c/Anaconda3/Scripts'
+                path_remove '/c/Anaconda3'
+                # export PATH='/c/Anaconda3:/c/Anaconda3/Scripts:'$PATH
+                export PYTHONPATH=$PYTHONPATH_BACKUP
 
                 alias py='winpty python'
                 alias jp='winpty jupyter console'
