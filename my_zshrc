@@ -1,5 +1,5 @@
 # my_zshrc
-# Version 55
+# Version 57
 #**************************************
 #
 # PATH
@@ -250,149 +250,164 @@ setopt noautoremoveslash
 setopt magic_equal_subst
 setopt noclobber
 
-# functions
+# functions & aliases
 #**************************************
-function path_remove ()  { export PATH=`echo -n $PATH | awk -v RS=: -v ORS=: '$0 != "'$1'"' | sed 's/:$//'`; }
-function path_append ()  { path_remove $1; export PATH="$PATH:$1"; }
-function path_prepend () { path_remove $1; export PATH="$1:$PATH"; }
+. ~/dotfiles/my_aliases
 
-function hg(){ (head -1 $1 ; tail -n +2 $1 | grep $2) }
-
-function settitle ()
-{
-    t="`hostname` [$@]"
-    # "\e]2;" > control code to start changing the window title
-    # "\007"  > control code to end
-    echo -ne "\e]2;$t\007"
-}
-
-# function cd()
-# {
-#   builtin cd $@ && settitle `pwd` && ls
+# # functions
+# #**************************************
+# function path_remove ()  { export PATH=`echo -n $PATH | awk -v RS=: -v ORS=: '$0 != "'$1'"' | sed 's/:$//'`; }
+# function path_append ()  { path_remove $1; export PATH="$PATH:$1"; }
+# function path_prepend () { path_remove $1; export PATH="$1:$PATH"; }
+#
+# function pss(){
+#     ps aux | grep -E "PID|$1" | grep -v grep
 # }
-
-function chpwd() {
-  settitle `pwd` && ls --color=tty --show-control-chars -F
-}
-
-function ic()
-{
-	iconv -f SJIS -t UTF-8 $1 -o $1_ic_$$
-	mv $1_ic_$$ $1
-}
-
-function wincmd()
-{
-    CMD=$1
-    shift
-    $CMD $* 2>&1 | iconv -f CP932 -t UTF-8
-}
-
-function ea()
-{
-    case ${OSTYPE} in
-        linux*)
-            ;;
-        msys*)
-            if [ -e "/c/Anaconda3/python" ]; then
-                path_prepend '/c/Anaconda3/Scripts'
-                path_prepend '/c/Anaconda3'
-                # export PATH='/c/Anaconda3:/c/Anaconda3/Scripts:'$PATH
-                export PYTHONPATH_BACKUP=$PYTHONPATH
-                export PYTHONPATH='/c/Anaconda3/Lib/site-packages'
-
-                alias py='winpty python'
-                alias jp='winpty jupyter console'
-                alias jq='winpty jupyter qtconsole'
-                alias jn='winpty jupyter notebook'
-                alias ip='winpty ipython --profile default --pylab=auto'
-            fi
-            ;;
-    esac
-}
-
-function da()
-{
-    case ${OSTYPE} in
-        linux*)
-            ;;
-        msys*)
-            if [ -e "/c/Anaconda3/python" ]; then
-                path_remove '/c/Anaconda3/Scripts'
-                path_remove '/c/Anaconda3'
-                # export PATH='/c/Anaconda3:/c/Anaconda3/Scripts:'$PATH
-                export PYTHONPATH=$PYTHONPATH_BACKUP
-
-                alias py='winpty python'
-                alias jp='winpty jupyter console'
-                alias jq='winpty jupyter qtconsole'
-                alias jn='winpty jupyter notebook'
-                alias ip='winpty ipython --profile default --pylab=auto'
-            fi
-            ;;
-    esac
-}
-
-# alias
-#**************************************
-case ${OSTYPE} in
-    linux*)
-        alias ip='ipython --profile default'
-        alias iq='ipython qtconsole --profile default --pylab=inline'
-        alias tmux='LD_LIBRARY_PATH=$HOME/local/lib tmux'
-        ;;
-    msys*)
-        # alias jp='winpty jupyter console'
-        # alias jq='jupyter qtconsole'
-        # alias jn='jupyter notebook'
-        # alias ip='winpty ipython --profile default --pylab=auto'
-        ;;
-esac
-
-case ${LANG} in
-    ja_JP.UTF-8)
-        alias ipconfig='wincmd ipconfig'
-        alias netstat='wincmd netstat'
-        alias netsh='wincmd netsh'
-        alias ping='wincmd /c/Windows/System32/ping'
-        alias tracert='wincmd TRACERT'
-        ;;
-    ja_JP.SJIS)
-        ;;
-esac
-
-alias v='vim'
-alias vi='vim'
-
-alias ls='ls --color=tty --show-control-chars -F'
-alias la='ls -a'
-alias ll='ls -al'
-alias l='ls'
-
-alias a='/c/Users/$USER/AppData/Local/atom/bin/atom.cmd'
-alias c='clear'
-alias d='diff'
-alias g='grep --color -i'
-alias h='history'
-alias m='more'
-alias p='pwd'
-
-# alias ..='cd ..'
-alias cr='chrome'
-alias df='df -h'
-alias du='du -h'
-alias he='head'
-alias le='less -N'
-alias pa='ps -a'
-alias py='python'
-alias rm='rm -i'
-alias so='source'
-alias ta='tail'
-alias tm='tmux'
-
-alias csvc='csvcut'
-alias csvl='csvlook'
-alias csvg='csvgrep'
+#
+# function hg(){ (head -1 $1 ; tail -n +2 $1 | grep $2) }
+#
+# function settitle ()
+# {
+#     t="`hostname` [$@]"
+#     # "\e]2;" > control code to start changing the window title
+#     # "\007"  > control code to end
+#     echo -ne "\e]2;$t\007"
+# }
+#
+# # function cd()
+# # {
+# #   builtin cd $@ && settitle `pwd` && ls
+# # }
+#
+# function chpwd() {
+#   settitle `pwd` && ls --color=tty --show-control-chars -F
+# }
+#
+# function ic()
+# {
+# 	iconv -f SJIS -t UTF-8 $1 -o $1_ic_$$
+# 	mv $1_ic_$$ $1
+# }
+#
+# function wincmd()
+# {
+#     CMD=$1
+#     shift
+#     $CMD $* 2>&1 | iconv -f CP932 -t UTF-8
+# }
+#
+# function ea()
+# {
+#     case ${OSTYPE} in
+#         linux*)
+#             ;;
+#         msys*)
+#             if [ -e "/c/Users/Nekoyuki/Anaconda3/python" ]; then
+#                 path_prepend '/c/Users/Nekoyuki/Anaconda3'
+#                 path_prepend '/c/Users/Nekoyuki/Anaconda3/Library/usr/bin'
+#                 path_prepend '/c/Users/Nekoyuki/Anaconda3/Library/bin'
+#                 path_prepend '/c/Users/Nekoyuki/Anaconda3/Scripts'
+#                 path_prepend '/c/Users/Nekoyuki/Anaconda3/bin'
+#                 path_prepend '/c/Users/Nekoyuki/Anaconda3/condabin'
+#                 # export PATH='/c/Anaconda3:/c/Anaconda3/Scripts:'$PATH
+#                 export PYTHONPATH_BACKUP=$PYTHONPATH
+#                 export PYTHONPATH='/c/Users/Nekoyuki/Anaconda3/Lib/site-packages'
+#             fi
+#             if [ -e "/c/Anaconda3/python" ]; then
+#                 path_prepend '/c/Anaconda3/Scripts'
+#                 path_prepend '/c/Anaconda3'
+#                 export PYTHONPATH_BACKUP=$PYTHONPATH
+#                 export PYTHONPATH='/c/Anaconda3/Lib/site-packages'
+#             fi
+#             ;;
+#     esac
+# }
+#
+# function da()
+# {
+#     case ${OSTYPE} in
+#         linux*)
+#             ;;
+#         msys*)
+#             if [ -e "/c/Users/Nekoyuki/Anaconda3/python" ]; then
+#                 path_remove '/c/Users/Nekoyuki/Anaconda3'
+#                 path_remove '/c/Users/Nekoyuki/Anaconda3/Library/usr/bin'
+#                 path_remove '/c/Users/Nekoyuki/Anaconda3/Library/bin'
+#                 path_remove '/c/Users/Nekoyuki/Anaconda3/Scripts'
+#                 path_remove '/c/Users/Nekoyuki/Anaconda3/bin'
+#                 path_remove '/c/Users/Nekoyuki/Anaconda3/condabin'
+#                 export PYTHONPATH=$PYTHONPATH_BACKUP
+#             fi
+#             if [ -e "/c/Anaconda3/python" ]; then
+#                 path_remove '/c/Anaconda3/Scripts'
+#                 path_remove '/c/Anaconda3'
+#                 # export PATH='/c/Anaconda3:/c/Anaconda3/Scripts:'$PATH
+#                 export PYTHONPATH=$PYTHONPATH_BACKUP
+#             fi
+#             ;;
+#     esac
+# }
+#
+# # alias
+# #**************************************
+# case ${OSTYPE} in
+#     linux*)
+#         alias ip='ipython --profile default'
+#         alias iq='ipython qtconsole --profile default --pylab=inline'
+#         alias tmux='LD_LIBRARY_PATH=$HOME/local/lib tmux'
+#         ;;
+#     msys*)
+#         alias jp='winpty jupyter console'
+#         alias jq='jupyter qtconsole'
+#         alias jn='jupyter notebook'
+#         alias ip='winpty ipython --profile default --pylab=auto'
+#         ;;
+# esac
+#
+# case ${LANG} in
+#     ja_JP.UTF-8)
+#         alias ipconfig='wincmd ipconfig'
+#         alias netstat='wincmd netstat'
+#         alias netsh='wincmd netsh'
+#         alias ping='wincmd /c/Windows/System32/ping'
+#         alias tracert='wincmd TRACERT'
+#         ;;
+#     ja_JP.SJIS)
+#         ;;
+# esac
+#
+# alias v='vim'
+# alias vi='vim'
+#
+# alias ls='ls --color=tty --show-control-chars -F'
+# alias la='ls -a'
+# alias ll='ls -al'
+# alias l='ls'
+#
+# alias a='/c/Users/$USER/AppData/Local/atom/bin/atom.cmd'
+# alias c='clear'
+# alias d='diff'
+# alias g='grep --color -i'
+# alias h='history'
+# alias m='more'
+# alias p='pwd'
+#
+# # alias ..='cd ..'
+# alias cr='chrome'
+# alias df='df -h'
+# alias du='du -h'
+# alias he='head'
+# alias le='less -N'
+# alias pa='ps -a'
+# alias py='python'
+# alias rm='rm -i'
+# alias so='source'
+# alias ta='tail'
+# alias tm='tmux'
+#
+# alias csvc='csvcut'
+# alias csvl='csvlook'
+# alias csvg='csvgrep'
 
 # global alias
 #**************************************
@@ -405,19 +420,6 @@ alias -g M='| more'
 # alias -g P='| peco'
 alias -g S='| sed'
 alias -g T='| tail'
-
-# Python
-#**************************************
-# case ${OSTYPE} in
-#     linux*)
-#         ;;
-#     msys*)
-#         if [ -e "/c/Anaconda3/python" ]; then
-#             export PATH='/c/Anaconda3:/c/Anaconda3/Scripts:'$PATH
-#             export PYTHONPATH='/c/Anaconda3/Lib/site-packages'
-#         fi
-#         ;;
-# esac
 
 # Go
 #**************************************

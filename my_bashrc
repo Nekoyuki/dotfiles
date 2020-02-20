@@ -1,5 +1,5 @@
 # my_bashrc
-# Version 13
+# Version 14
 #**************************************
 
 # PATH
@@ -121,10 +121,12 @@ esac
  TTY_COLOR="\e[48;5;245m\e[38;5;008m${S_RIGHT_BOLD} ${TTY} \e[48;5;008m\e[38;5;245m${S_RIGHT_BOLD}"
  DIR_COLOR="\e[48;5;245m\e[38;5;008m${S_RIGHT_BOLD} \W \e[48;5;008m\e[38;5;245m${S_RIGHT_BOLD}"
 
-if [ -v BASHRC_GOOGLE_PATH ]; then
-    MY_PROMPT="%{${COLOR_BG}%} \!%{${COLOR_RESET}%} %n > %l > %{${PROMPT_LANG}%} > %~ >%{${COLOR_RESET}%}"
-else
+if [ -z "${BASHRC_GOOGLE_PATH}" ]; then
     MY_PROMPT="${HISTORY_NAME}${HOSTCOLOR}${TTY_COLOR}${PROMPT_LANG}${DIR_COLOR}${COLOR_RESET}\n + "
+    # MY_PROMPT="%{${COLOR_BG}%} \!%{${COLOR_RESET}%} %n > %l > %{${PROMPT_LANG}%} > %~ >%{${COLOR_RESET}%}"
+else
+    # MY_PROMPT="${HISTORY_NAME}${HOSTCOLOR}${TTY_COLOR}${PROMPT_LANG}${DIR_COLOR}${COLOR_RESET}\n + "
+    MY_PROMPT="%{${COLOR_BG}%} \!%{${COLOR_RESET}%} %n > %l > %{${PROMPT_LANG}%} > %~ >%{${COLOR_RESET}%}"
 fi
 
 PS1=$MY_PROMPT
@@ -133,116 +135,120 @@ PS1=$MY_PROMPT
 #**************************************
 export LS_COLORS='di=34:ln=36:so=32:pi=33:ex=32:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
 
-# functions
+# functions & aliases
 #**************************************
-function hg(){ (head -1 $1 ; tail -n +2 $1 | grep $2) }
+. ~/dotfiles/my_aliases
 
-function settitle ()
-{
-    t="`hostname` [$@]"
-    # "\e]2;" > control code to start changing the window title
-    # "\007"  > control code to end
-    echo -ne "\e]2;$t\007"
-}
-
-# function cd()
+# # functions
+# #**************************************
+# function hg(){ (head -1 $1 ; tail -n +2 $1 | grep $2) }
+#
+# function settitle ()
 # {
-#   builtin cd $@ && settitle `pwd` && ls
+#     t="`hostname` [$@]"
+#     # "\e]2;" > control code to start changing the window title
+#     # "\007"  > control code to end
+#     echo -ne "\e]2;$t\007"
 # }
-
-function chpwd() {
-  settitle `pwd` && ls --color=tty --show-control-chars -F
-}
-
-function ic()
-{
-	iconv -f SJIS -t UTF-8 $1 -o $1_ic_$$
-	mv $1_ic_$$ $1
-}
-
-function wincmd()
-{
-    CMD=$1
-    shift
-    $CMD $* 2>&1 | iconv -f CP932 -t UTF-8
-}
-
-# alias
-#**************************************
-case ${OSTYPE} in
-    linux*)
-        alias ip='ipython --profile default'
-        alias iq='ipython qtconsole --profile default --pylab=inline'
-        alias tmux='LD_LIBRARY_PATH=$HOME/local/lib tmux'
-        ;;
-    msys*)
-        alias jp='winpty jupyter console'
-        alias jq='jupyter qtconsole'
-        alias jn='jupyter notebook'
-        alias ip='winpty ipython --profile default --pylab=auto'
-        ;;
-esac
-
-case ${LANG} in
-    ja_JP.UTF-8)
-        alias ipconfig='wincmd ipconfig'
-        alias netstat='wincmd netstat'
-        alias netsh='wincmd netsh'
-        alias ping='wincmd /c/Windows/System32/ping'
-        alias tracert='wincmd TRACERT'
-        ;;
-    ja_JP.SJIS)
-        ;;
-esac
-
-alias v='vim'
-alias vi='vim'
-
-alias ls='ls --color=tty --show-control-chars -F'
-alias la='ls -a'
-alias ll='ls -al'
-alias l='ls'
-
-# alias a='/c/Users/$USER/AppData/Local/atom/app-1.8.0/atom.exe'
-alias c='clear'
-alias d='diff'
-alias g='grep --color -i'
-alias h='history'
-alias m='more'
-alias p='pwd'
-
-alias ..='cd ..'
-alias cr='chrome'
-alias df='df -h'
-alias du='du -h'
-alias he='head'
-alias le='less -N'
-alias pa='ps -a'
-alias py='python'
-alias rm='rm -i'
-alias so='source'
-alias ta='tail'
-alias tm='tmux'
-
-alias csvc='csvcut'
-alias csvl='csvlook'
-alias csvg='csvgrep'
+#
+# # function cd()
+# # {
+# #   builtin cd $@ && settitle `pwd` && ls
+# # }
+#
+# function chpwd() {
+#   settitle `pwd` && ls --color=tty --show-control-chars -F
+# }
+#
+# function ic()
+# {
+# 	iconv -f SJIS -t UTF-8 $1 -o $1_ic_$$
+# 	mv $1_ic_$$ $1
+# }
+#
+# function wincmd()
+# {
+#     CMD=$1
+#     shift
+#     $CMD $* 2>&1 | iconv -f CP932 -t UTF-8
+# }
+#
+# # alias
+# #**************************************
+# case ${OSTYPE} in
+#     linux*)
+#         alias ip='ipython --profile default'
+#         alias iq='ipython qtconsole --profile default --pylab=inline'
+#         alias tmux='LD_LIBRARY_PATH=$HOME/local/lib tmux'
+#         ;;
+#     msys*)
+#         alias jp='winpty jupyter console'
+#         alias jq='jupyter qtconsole'
+#         alias jn='jupyter notebook'
+#         alias ip='winpty ipython --profile default --pylab=auto'
+#         ;;
+# esac
+#
+# case ${LANG} in
+#     ja_JP.UTF-8)
+#         alias ipconfig='wincmd ipconfig'
+#         alias netstat='wincmd netstat'
+#         alias netsh='wincmd netsh'
+#         alias ping='wincmd /c/Windows/System32/ping'
+#         alias tracert='wincmd TRACERT'
+#         ;;
+#     ja_JP.SJIS)
+#         ;;
+# esac
+#
+# alias v='vim'
+# alias vi='vim'
+#
+# alias ls='ls --color=tty --show-control-chars -F'
+# alias la='ls -a'
+# alias ll='ls -al'
+# alias l='ls'
+#
+# # alias a='/c/Users/$USER/AppData/Local/atom/app-1.8.0/atom.exe'
+# alias c='clear'
+# alias d='diff'
+# alias g='grep --color -i'
+# alias h='history'
+# alias m='more'
+# alias p='pwd'
+#
+# alias ..='cd ..'
+# alias cr='chrome'
+# alias df='df -h'
+# alias du='du -h'
+# alias he='head'
+# alias le='less -N'
+# alias pa='ps -a'
+# alias py='python'
+# alias rm='rm -i'
+# alias so='source'
+# alias ta='tail'
+# alias tm='tmux'
+#
+# alias csvc='csvcut'
+# alias csvl='csvlook'
+# alias csvg='csvgrep'
 
 # global alias
 #**************************************
 
-# Python
-#**************************************
-case ${OSTYPE} in
-    linux*)
-        ;;
-    msys*)
-        if [ -e "/c/Anaconda3/python" ]; then
-            export PATH='/c/Anaconda3:/c/Anaconda3/Scripts:'$PATH
-            # export PYTHONPATH='/c/Anaconda3/Lib/site-packages'
-        fi
-        ;;
-esac
+# # Python
+# #**************************************
+# case ${OSTYPE} in
+#     linux*)
+#         ;;
+#     msys*)
+#         if [ -e "/c/Anaconda3/python" ]; then
+#             export PATH='/c/Anaconda3:/c/Anaconda3/Scripts:'$PATH
+#             # export PYTHONPATH='/c/Anaconda3/Lib/site-packages'
+#         fi
+#         ;;
+# esac
 
 # Go
 #**************************************
