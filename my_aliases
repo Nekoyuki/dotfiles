@@ -1,5 +1,5 @@
 # my_aliases
-# Version 01
+# Version 03
 #**************************************
 #
 # functions
@@ -130,6 +130,7 @@ alias vi='vim'
 alias ls='ls --color=tty --show-control-chars -F'
 alias la='ls -a'
 alias ll='ls -al'
+alias lt='ls -alt'
 alias l='ls'
 
 alias c='clear'
@@ -137,7 +138,9 @@ alias d='diff'
 alias g='grep --color -i'
 alias h='history'
 alias m='more'
+alias t='tail'
 alias p='pwd'
+alias y='yes'
 
 # alias ..='cd ..'
 alias cr='chrome'
@@ -146,10 +149,10 @@ alias du='du -h'
 alias he='head'
 alias le='less -N'
 alias pa='ps -a'
+alias pu='ps -au'
 alias py='python'
 alias rm='rm -i'
 alias so='source'
-alias ta='tail'
 alias tm='tmux'
 
 alias ip='ipython --profile default'
