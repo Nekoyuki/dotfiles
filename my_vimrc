@@ -1,5 +1,5 @@
 " my_vimrc
-" Ver.32
+" Ver.33
 " ----------------------------------------------
 
 " OSTYPE
@@ -139,22 +139,22 @@ let g:neobundle_default_git_protocol='https'
 NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'itchyny/lightline.vim'
-NeoBundle 'vim-jp/vimdoc-ja'
+" NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tyru/caw.vim.git'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'bronson/vim-trailing-whitespace'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'rhysd/clever-f.vim'
-"NeoBundle 'Shougo/vimshell'
-"NeoBundle 'Shougo/vimproc'
+" NeoBundle 'Shougo/vimshell'
+" NeoBundle 'Shougo/vimproc'
 NeoBundle 'gorodinskiy/vim-colorsque'
 NeoBundle 'terryma/vim-expand-region'
 NeoBundleLazy 'Shougo/unite.vim', {'autoload': {'commands':['Unite']}}
 NeoBundleLazy 'scrooloose/nerdtree', {'autoload': {'commands':['NERDTree']}}
-NeoBundleLazy 'davidhalter/jedi-vim', {'autoload': {'filetypes':['python']}}
-NeoBundleLazy 'pangloss/vim-javascript', {'autoload': {'filetypes':['javascript']}}
-NeoBundleLazy 'nachumk/systemverilog.vim', {'autoload': {'filetypes':['verilog']}}
+" NeoBundleLazy 'davidhalter/jedi-vim', {'autoload': {'filetypes':['python']}}
+" NeoBundleLazy 'pangloss/vim-javascript', {'autoload': {'filetypes':['javascript']}}
+" NeoBundleLazy 'nachumk/systemverilog.vim', {'autoload': {'filetypes':['verilog']}}
 
 call neobundle#end()
 
@@ -209,6 +209,7 @@ nnoremap <silent> Uf :UniteWithBufferDir -buffer-name=files file<CR>
 nnoremap <silent> Ur :Unite -buffer-name=register register<CR>
 nnoremap <silent> Um :Unite file_mru buffer<CR>
 nnoremap <silent> Uc :Unite command<CR>
+nnoremap <silent> Un :NERDTreeToggle<CR>
 autocmd FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 autocmd FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 
@@ -223,16 +224,16 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=251
 let g:indent_guides_color_change_percent = 30
 let g:indent_guides_guide_size = 1
 
-" Jedi
-" ----------------------------------------------
-let g:jedi#popup_on_dot=0
-let g:jedi#force_py_version = 3
-
-if has('python3')
-    let g:jedi#force_py_version = 3
-elseif has ('python')
-    let g:jedi#force_py_version = 2
-endif
+" " Jedi
+" " ----------------------------------------------
+" let g:jedi#popup_on_dot=0
+" let g:jedi#force_py_version = 3
+"
+" if has('python3')
+"     let g:jedi#force_py_version = 3
+" elseif has ('python')
+"     let g:jedi#force_py_version = 2
+" endif
 
 " Lightline
 " ----------------------------------------------
@@ -270,15 +271,15 @@ elseif OSTYPE == "MSYS_NT-10.0\n"
     colorscheme solarized
 endif
 
-" VimShell
-" ----------------------------------------------
-let g:vimshell_prompt = "[".$USER."@".$HOSTNAME."]> "
-let g:vimshell_secondary_prompt = "> "
-let g:vimshell_user_prompt = '"(" . getcwd() . ") --- (" . $USER . "@" . hostname() . ")"'
-
-nnoremap <silent> vs :VimShell<CR>
-nnoremap <silent> vss :VimShellSendString<CR>
-nnoremap <silent> vip :VimShellInteractive ipython<CR>
+" " VimShell
+" " ----------------------------------------------
+" let g:vimshell_prompt = "[".$USER."@".$HOSTNAME."]> "
+" let g:vimshell_secondary_prompt = "> "
+" let g:vimshell_user_prompt = '"(" . getcwd() . ") --- (" . $USER . "@" . hostname() . ")"'
+"
+" nnoremap <silent> vs :VimShell<CR>
+" nnoremap <silent> vss :VimShellSendString<CR>
+" nnoremap <silent> vip :VimShellInteractive ipython<CR>
 
 " vim-expand-region
 " ----------------------------------------------
