@@ -1,0 +1,9 @@
+[http]
+    proxy = hage.hage.com:80
+    sslVerify = false
+[https]
+    proxy = hage.hage.com:80
+    sslVerify = false
+[user]
+    name = "Hage Hageo"
+    email = hage@hage.com

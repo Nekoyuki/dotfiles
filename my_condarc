@@ -1,0 +1,4 @@
+proxy_servers:
+    http: http://hage.hage.com:80
+    https: https://hage.hage.com:80
+ssl_verify: false
