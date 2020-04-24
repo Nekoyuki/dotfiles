@@ -69,7 +69,7 @@ function ea()
             # fi
 
             alias jp='winpty jupyter console'
-            alias jq='jupyter qtconsole'
+            alias jq='jupyter qtconsole --style=solarized-dark'
             alias jn='jupyter notebook'
             alias ip='winpty ipython --profile default --pylab=auto'
             ;;
