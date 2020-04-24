@@ -1,5 +1,5 @@
 # my_aliases
-# Version 03
+# Version 05
 #**************************************
 #
 # functions
@@ -44,29 +44,29 @@ function wincmd()
     $CMD $* 2>&1 | iconv -f CP932 -t UTF-8
 }
 
+MY_ANACONDA="/c/Users/Nekoyuki/Anaconda3"
 function ea()
 {
     case ${OSTYPE} in
         linux*)
             ;;
         msys*)
-            if [ -e "/c/Users/Nekoyuki/Anaconda3/python" ]; then
-                path_prepend '/c/Users/Nekoyuki/Anaconda3'
-                path_prepend '/c/Users/Nekoyuki/Anaconda3/Library/usr/bin'
-                path_prepend '/c/Users/Nekoyuki/Anaconda3/Library/bin'
-                path_prepend '/c/Users/Nekoyuki/Anaconda3/Scripts'
-                path_prepend '/c/Users/Nekoyuki/Anaconda3/bin'
-                path_prepend '/c/Users/Nekoyuki/Anaconda3/condabin'
-                # export PATH='/c/Anaconda3:/c/Anaconda3/Scripts:'$PATH
+            if [ -e "${MY_ANACONDA}/python" ]; then
+                path_prepend "${MY_ANACONDA}"
+                path_prepend "${MY_ANACONDA}/Library/usr/bin"
+                path_prepend "${MY_ANACONDA}/Library/bin"
+                path_prepend "${MY_ANACONDA}/Scripts"
+                path_prepend "${MY_ANACONDA}/bin"
+                path_prepend "${MY_ANACONDA}/condabin"
                 export PYTHONPATH_BACKUP=$PYTHONPATH
-                export PYTHONPATH='/c/Users/Nekoyuki/Anaconda3/Lib/site-packages'
+                export PYTHONPATH="${MY_ANACONDA}/Lib/site-packages"
             fi
-            if [ -e "/c/Anaconda3/python" ]; then
-                path_prepend '/c/Anaconda3/Scripts'
-                path_prepend '/c/Anaconda3'
-                export PYTHONPATH_BACKUP=$PYTHONPATH
-                export PYTHONPATH='/c/Anaconda3/Lib/site-packages'
-            fi
+            # if [ -e "/c/Anaconda3/python" ]; then
+            #     path_prepend '/c/Anaconda3/Scripts'
+            #     path_prepend '/c/Anaconda3'
+            #     export PYTHONPATH_BACKUP=$PYTHONPATH
+            #     export PYTHONPATH='/c/Anaconda3/Lib/site-packages'
+            # fi
 
             alias jp='winpty jupyter console'
             alias jq='jupyter qtconsole'
@@ -82,21 +82,21 @@ function da()
         linux*)
             ;;
         msys*)
-            if [ -e "/c/Users/Nekoyuki/Anaconda3/python" ]; then
-                path_remove '/c/Users/Nekoyuki/Anaconda3'
-                path_remove '/c/Users/Nekoyuki/Anaconda3/Library/usr/bin'
-                path_remove '/c/Users/Nekoyuki/Anaconda3/Library/bin'
-                path_remove '/c/Users/Nekoyuki/Anaconda3/Scripts'
-                path_remove '/c/Users/Nekoyuki/Anaconda3/bin'
-                path_remove '/c/Users/Nekoyuki/Anaconda3/condabin'
+            if [ -e "${MY_ANACONDA}/python" ]; then
+                path_remove "${MY_ANACONDA}"
+                path_remove "${MY_ANACONDA}/Library/usr/bin"
+                path_remove "${MY_ANACONDA}/Library/bin"
+                path_remove "${MY_ANACONDA}/Scripts"
+                path_remove "${MY_ANACONDA}/bin"
+                path_remove "${MY_ANACONDA}/condabin"
                 export PYTHONPATH=$PYTHONPATH_BACKUP
             fi
-            if [ -e "/c/Anaconda3/python" ]; then
-                path_remove '/c/Anaconda3/Scripts'
-                path_remove '/c/Anaconda3'
-                # export PATH='/c/Anaconda3:/c/Anaconda3/Scripts:'$PATH
-                export PYTHONPATH=$PYTHONPATH_BACKUP
-            fi
+            # if [ -e "/c/Anaconda3/python" ]; then
+            #     path_remove '/c/Anaconda3/Scripts'
+            #     path_remove '/c/Anaconda3'
+            #     # export PATH='/c/Anaconda3:/c/Anaconda3/Scripts:'$PATH
+            #     export PYTHONPATH=$PYTHONPATH_BACKUP
+            # fi
             ;;
     esac
 }
