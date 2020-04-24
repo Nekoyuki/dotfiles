@@ -1,5 +1,5 @@
 BoldAsFont=no
-Font=ÇlÇr ÉSÉVÉbÉN
+Font=DejaVu Sans Mono for Powerline
 Locale=ja_JP
 Charset=SJIS
 BackgroundColour=255,255,255
@@ -10,6 +10,12 @@ Transparency=off
 CursorType=block
 CursorBlinks=no
 
+# solarized.light
+# ForegroundColour=101, 123, 131
+# BackgroundColour=253, 246, 227
+# CursorColour=    220,  50,  47
+
+# solarized.dark
 ForegroundColour=131, 148, 150
 BackgroundColour=  0,  43,  54
 CursorColour=    220,  50,  47

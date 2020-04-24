@@ -1,9 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 # setup.sh
 # Version 1
 #*************************************************
 
-DATE = `date +%y%m%d`
+DATE=`date +%y%m%d`
 
 mv ~/.bashrc ~/.bashrc_org_${DATE}
 ln -sf ~/dotfiles/home_dotfiles/bashrc ~/.bashrc
