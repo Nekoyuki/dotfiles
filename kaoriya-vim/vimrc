@@ -458,6 +458,7 @@ nnoremap <silent> Ur :Unite -buffer-name=register register<CR>
 nnoremap <silent> Um :Unite file_mru buffer<CR>
 nnoremap <silent> Uc :Unite command<CR>
 nnoremap <silent> Un :NERDTreeToggle<CR>
+nnoremap <silent> Up :PrevimOpen<CR>
 autocmd FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 autocmd FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 
