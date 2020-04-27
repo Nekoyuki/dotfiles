@@ -1,5 +1,5 @@
 " my_vimrc
-" Ver.33
+" Ver.35
 " ----------------------------------------------
 
 " OSTYPE
@@ -150,6 +150,7 @@ NeoBundle 'rhysd/clever-f.vim'
 " NeoBundle 'Shougo/vimproc'
 NeoBundle 'gorodinskiy/vim-colorsque'
 NeoBundle 'terryma/vim-expand-region'
+NeoBundle 'previm/previm'
 NeoBundleLazy 'Shougo/unite.vim', {'autoload': {'commands':['Unite']}}
 NeoBundleLazy 'scrooloose/nerdtree', {'autoload': {'commands':['NERDTree']}}
 " NeoBundleLazy 'davidhalter/jedi-vim', {'autoload': {'filetypes':['python']}}
@@ -210,6 +211,7 @@ nnoremap <silent> Ur :Unite -buffer-name=register register<CR>
 nnoremap <silent> Um :Unite file_mru buffer<CR>
 nnoremap <silent> Uc :Unite command<CR>
 nnoremap <silent> Un :NERDTreeToggle<CR>
+nnoremap <silent> Up :PrevimOpen<CR>
 autocmd FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 autocmd FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 
@@ -286,3 +288,6 @@ endif
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 
+" previm
+" ----------------------------------------------
+let g:previm_open_cmd = '"/c/Program Files (x86)/Google/Chrome/Application/chrome.exe"'

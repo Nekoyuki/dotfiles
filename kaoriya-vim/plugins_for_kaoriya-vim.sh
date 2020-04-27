@@ -18,6 +18,7 @@ scrooloose/nerdtree
 davidhalter/jedi-vim
 pangloss/vim-javascript
 nachumk/systemverilog.vim
+previm/previm
 )
 
 for i in "${LIST[@]}"; do
