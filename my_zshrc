@@ -1,5 +1,5 @@
 # my_zshrc
-# Version 57
+# Version 58
 #**************************************
 #
 # PATH
@@ -155,7 +155,8 @@ local DIR_COLOR="%K{245}%F{008}${S_RIGHT_BOLD} %~ %K{008}%F{245}${S_RIGHT_BOLD}"
 if [ -v BASHRC_GOOGLE_PATH ]; then
     local MY_PROMPT="%{${COLOR_BG}%} %h%{${COLOR_RESET}%} %n > %l > %{${PROMPT_LANG}%} > %~ >%{${COLOR_RESET}%}"
 else
-    local MY_PROMPT="${HISTORY_NAME}${HOSTCOLOR}${TTY_COLOR}${PROMPT_LANG}${DIR_COLOR}${COLOR_RESET}"
+    local MY_PROMPT="${HISTORY_NAME}${HOSTCOLOR}${DIR_COLOR}${COLOR_RESET}"
+    # local MY_PROMPT="${HISTORY_NAME}${HOSTCOLOR}${TTY_COLOR}${PROMPT_LANG}${DIR_COLOR}${COLOR_RESET}"
 fi
 
 precmd () {

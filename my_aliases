@@ -1,5 +1,5 @@
 # my_aliases
-# Version 05
+# Version 07
 #**************************************
 #
 # functions
@@ -44,13 +44,20 @@ function wincmd()
     $CMD $* 2>&1 | iconv -f CP932 -t UTF-8
 }
 
-MY_ANACONDA="/c/Users/Nekoyuki/Anaconda3"
 function ea()
 {
     case ${OSTYPE} in
         linux*)
             ;;
         msys*)
+            if [ -e "/c/Users/Nekoyuki/Anaconda3"]; then
+                MY_ANACONDA="/c/Users/Nekoyuki/Anaconda3"
+            elif [ -e "/c/Users/numeda/Anaconda3"]; then
+                MY_ANACONDA="/c/Users/numeda/Anaconda3"
+            else
+                echo "No Anaconda3 found"
+            fi
+
             if [ -e "${MY_ANACONDA}/python" ]; then
                 path_prepend "${MY_ANACONDA}"
                 path_prepend "${MY_ANACONDA}/Library/usr/bin"
@@ -61,12 +68,6 @@ function ea()
                 export PYTHONPATH_BACKUP=$PYTHONPATH
                 export PYTHONPATH="${MY_ANACONDA}/Lib/site-packages"
             fi
-            # if [ -e "/c/Anaconda3/python" ]; then
-            #     path_prepend '/c/Anaconda3/Scripts'
-            #     path_prepend '/c/Anaconda3'
-            #     export PYTHONPATH_BACKUP=$PYTHONPATH
-            #     export PYTHONPATH='/c/Anaconda3/Lib/site-packages'
-            # fi
 
             alias jp='winpty jupyter console'
             alias jq='jupyter qtconsole --style=solarized-dark'
@@ -91,12 +92,6 @@ function da()
                 path_remove "${MY_ANACONDA}/condabin"
                 export PYTHONPATH=$PYTHONPATH_BACKUP
             fi
-            # if [ -e "/c/Anaconda3/python" ]; then
-            #     path_remove '/c/Anaconda3/Scripts'
-            #     path_remove '/c/Anaconda3'
-            #     # export PATH='/c/Anaconda3:/c/Anaconda3/Scripts:'$PATH
-            #     export PYTHONPATH=$PYTHONPATH_BACKUP
-            # fi
             ;;
     esac
 }
@@ -154,6 +149,7 @@ alias py='python'
 alias rm='rm -i'
 alias so='source'
 alias tm='tmux'
+alias wh='which'
 
 alias ip='ipython --profile default'
 alias iq='ipython qtconsole --profile default --pylab=inline'
@@ -161,4 +157,8 @@ alias iq='ipython qtconsole --profile default --pylab=inline'
 alias csvc='csvcut'
 alias csvl='csvlook'
 alias csvg='csvgrep'
+
+alias gia='git add .'
+alias gic='git commit -m'
+alias gip='git push'
 
