@@ -158,7 +158,7 @@ alias csvc='csvcut'
 alias csvl='csvlook'
 alias csvg='csvgrep'
 
-alias gia='git add .'
-alias gic='git commit -m'
-alias gip='git push'
+alias ga='git add .'
+alias gc='git commit -m'
+alias gp='git push'
 
