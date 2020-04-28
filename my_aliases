@@ -50,9 +50,9 @@ function ea()
         linux*)
             ;;
         msys*)
-            if [ -e "/c/Users/Nekoyuki/Anaconda3"]; then
+            if [ -d "/c/Users/Nekoyuki/Anaconda3" ]; then
                 MY_ANACONDA="/c/Users/Nekoyuki/Anaconda3"
-            elif [ -e "/c/Users/numeda/Anaconda3"]; then
+            elif [ -d "/c/Users/numeda/Anaconda3" ]; then
                 MY_ANACONDA="/c/Users/numeda/Anaconda3"
             else
                 echo "No Anaconda3 found"
