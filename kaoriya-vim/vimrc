@@ -309,6 +309,7 @@ set wrapscan                            "On  Back to the top when search reaches
 " ----------------------------------------------
 set nobackup
 set noswapfile
+set noundofile
 " set autoread                            "On Reread when the file is updated outside
 " set confirm                             "On Confirm when the file is not saved yet
 
@@ -379,11 +380,11 @@ nmap <silent> <Esc><Esc> :nohlsearch<CR>	"Cancel highligh
 " " set nocompatible
 " filetype off
 " filetype plugin indent off
-" 
+"
 " set runtimepath+=~/.vim/bundle/neobundle.vim
 " call neobundle#begin(expand('~/.vim/bundle/'))
 " let g:neobundle_default_git_protocol='https'
-" 
+"
 " NeoBundleFetch 'Shougo/neobundle.vim'
 " NeoBundle 'nathanaelkane/vim-indent-guides'
 " NeoBundle 'itchyny/lightline.vim'
@@ -403,9 +404,9 @@ nmap <silent> <Esc><Esc> :nohlsearch<CR>	"Cancel highligh
 " NeoBundleLazy 'davidhalter/jedi-vim', {'autoload': {'filetypes':['python']}}
 " NeoBundleLazy 'pangloss/vim-javascript', {'autoload': {'filetypes':['javascript']}}
 " NeoBundleLazy 'nachumk/systemverilog.vim', {'autoload': {'filetypes':['verilog']}}
-" 
+"
 " call neobundle#end()
-" 
+"
 " filetype plugin on
 " filetype plugin indent on
 
@@ -477,13 +478,13 @@ let g:indent_guides_guide_size = 1
 " " ----------------------------------------------
 " let g:jedi#popup_on_dot=0
 " let g:jedi#force_py_version = 3
-" 
+"
 " if has('python3')
 "     let g:jedi#force_py_version = 3
 " elseif has ('python')
 "     let g:jedi#force_py_version = 2
 " endif
-" 
+"
 " Lightline
 " ----------------------------------------------
 set laststatus=2
@@ -505,7 +506,7 @@ vmap <Leader>c <Plug>(caw:hatpos:toggle)
 " " ----------------------------------------------
 " let g:syntastic_python_checkers = ["flake8"]
 " let g:syntastic_python_flake8_args = '--ignore="E501"'
-" 
+"
 " " vim-clors-solarized
 " " ----------------------------------------------
 " if OSTYPE == "Linux\n"
@@ -519,13 +520,13 @@ vmap <Leader>c <Plug>(caw:hatpos:toggle)
 "     set background=dark
 "     colorscheme solarized
 " endif
-" 
+"
 " " VimShell
 " " ----------------------------------------------
 " let g:vimshell_prompt = "[".$USER."@".$HOSTNAME."]> "
 " let g:vimshell_secondary_prompt = "> "
 " let g:vimshell_user_prompt = '"(" . getcwd() . ") --- (" . $USER . "@" . hostname() . ")"'
-" 
+"
 " nnoremap <silent> vs :VimShell<CR>
 " nnoremap <silent> vss :VimShellSendString<CR>
 " nnoremap <silent> vip :VimShellInteractive ipython<CR>

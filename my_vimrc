@@ -1,5 +1,5 @@
 " my_vimrc
-" Ver.35
+" Ver.36
 " ----------------------------------------------
 
 " OSTYPE
@@ -61,6 +61,7 @@ set wrapscan                            "On  Back to the top when search reaches
 " ----------------------------------------------
 set nobackup
 set noswapfile
+set noundofile
 " set autoread                            "On Reread when the file is updated outside
 " set confirm                             "On Confirm when the file is not saved yet
 
