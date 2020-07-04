@@ -1,5 +1,5 @@
 # my_aliases
-# Version 08
+# Version 09
 #**************************************
 #
 # functions
@@ -103,7 +103,10 @@ case ${OSTYPE} in
         alias tmux='LD_LIBRARY_PATH=$HOME/local/lib tmux'
         ;;
     msys*)
-        alias a='/c/Users/$USER/AppData/Local/atom/bin/atom.cmd'
+        # alias a='/c/Users/$USER/AppData/Local/atom/bin/atom.cmd'
+        alias we="/c/Program Files (x86)/Microsoft Office/root/Office16/EXCEL.EXE"
+        alias we2="/c/Program Files/Microsoft Office/root/Office16/EXCEL.EXE"
+        alias wp='/c/Windows/explorer.exe'
 
         case ${LANG} in
             ja_JP.UTF-8)
