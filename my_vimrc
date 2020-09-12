@@ -247,8 +247,8 @@ let g:lightline = { 'colorscheme' : 'wombat',}
 
 " Vimdoc-ja
 " ----------------------------------------------
-helptags ~/.vim/bundle/vimdoc-ja/doc
-set helplang=ja,en
+" helptags ~/.vim/bundle/vimdoc-ja/doc
+" set helplang=ja,en
 
 " caw.vim.git
 " ----------------------------------------------
