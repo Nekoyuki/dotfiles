@@ -65,7 +65,7 @@ endif
 " カラー設定:
 " colorscheme morning
 syntax enable
-set background=light
+set background=dark
 colorscheme solarized
 
 " 端末モード関連の色設定
