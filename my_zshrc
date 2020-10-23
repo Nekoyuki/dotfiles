@@ -1,5 +1,5 @@
 # my_zshrc
-# Version 58
+# Version 59
 #**************************************
 #
 # PATH
@@ -115,9 +115,6 @@ esac
 local COLOR_FG=$'%F{030}'
 local COLOR_BG=$'%K{030}'
 local COLOR_RESET=$'%k%f'
-# local COLOR_FG=$'\e[38;5;030m'
-# local COLOR_BG=$'\e[30;48;5;030m'
-# local COLOR_RESET=$'\e[0m'
 
 local HISTORY_NAME="%K{002}%F{008} %h ${S_RIGHT_THIN} %n %K{008}%F{002}${S_RIGHT_BOLD}${COLOR_RESET}"
 
@@ -136,28 +133,31 @@ case ${HOSTNAME} in
         ;;
 esac
 
-case ${LANG} in
-    ja_JP.UTF-8)
-        local PROMPT_LANG="%K{245}%F{008}${S_RIGHT_BOLD} ${LANG} %K{008}%F{245}${S_RIGHT_BOLD}"
-        ;;
-    ja_JP.SJIS)
-        local PROMPT_LANG="%K{132}%F{008}${S_RIGHT_BOLD} ${LANG} %K{008}%F{132}${S_RIGHT_BOLD}"
-        ;;
-    en_US.UTF-8)
-        local PROMPT_LANG="%K{002}%F{008}${S_RIGHT_BOLD} ${LANG} %K{008}%F{002}${S_RIGHT_BOLD}"
-        ;;
-esac
+# case ${LANG} in
+#     ja_JP.UTF-8)
+#         local PROMPT_LANG="%K{245}%F{008}${S_RIGHT_BOLD} ${LANG} %K{008}%F{245}${S_RIGHT_BOLD}"
+#         ;;
+#     ja_JP.SJIS)
+#         local PROMPT_LANG="%K{132}%F{008}${S_RIGHT_BOLD} ${LANG} %K{008}%F{132}${S_RIGHT_BOLD}"
+#         ;;
+#     en_US.UTF-8)
+#         local PROMPT_LANG="%K{002}%F{008}${S_RIGHT_BOLD} ${LANG} %K{008}%F{002}${S_RIGHT_BOLD}"
+#         ;;
+# esac
 # local PROMPT_LANG=${LANG_COLOR}${LANG}${COLOR_RESET}
 
-local TTY_COLOR="%K{245}%F{008}${S_RIGHT_BOLD} %l %K{008}%F{245}${S_RIGHT_BOLD}"
+# local TTY_COLOR="%K{245}%F{008}${S_RIGHT_BOLD} %l %K{008}%F{245}${S_RIGHT_BOLD}"
 local DIR_COLOR="%K{245}%F{008}${S_RIGHT_BOLD} %~ %K{008}%F{245}${S_RIGHT_BOLD}"
 
-if [ -v BASHRC_GOOGLE_PATH ]; then
-    local MY_PROMPT="%{${COLOR_BG}%} %h%{${COLOR_RESET}%} %n > %l > %{${PROMPT_LANG}%} > %~ >%{${COLOR_RESET}%}"
-else
-    local MY_PROMPT="${HISTORY_NAME}${HOSTCOLOR}${DIR_COLOR}${COLOR_RESET}"
-    # local MY_PROMPT="${HISTORY_NAME}${HOSTCOLOR}${TTY_COLOR}${PROMPT_LANG}${DIR_COLOR}${COLOR_RESET}"
-fi
+case ${OSTYPE} in
+    msys*)
+        local MY_PROMPT="${HISTORY_NAME}${HOSTCOLOR}${DIR_COLOR}${COLOR_RESET}"
+        # local MY_PROMPT="${HISTORY_NAME}${HOSTCOLOR}${TTY_COLOR}${PROMPT_LANG}${DIR_COLOR}${COLOR_RESET}"
+        ;;
+    *)
+        local MY_PROMPT="%F{050}[%h %n@%m %~ ]${COLOR_RESET}"
+        ;;
+esac
 
 precmd () {
     print -rP "$MY_PROMPT"
@@ -165,7 +165,6 @@ precmd () {
 
 PROMPT2="%_%%"
 SPROMT="${fg[red]}>>${reset_color}"
-
 
 terminfo_down_sc=$terminfo[cud1]$terminfo[cuu1]$terminfo[sc]$terminfo[cud1]
 
@@ -344,9 +343,8 @@ if [ -x "`which fzy`" ]; then
     alias tp='top | fzy'
     alias pp='ps aux | fzy'
 
-    bindkey '^r' peco-select-history
-    bindkey '^j' peco-select-history-number
-    # bindkey '^h' peco-select-history-number
+    bindkey '^t' peco-select-history
+    bindkey '^r' peco-select-history-number
     bindkey '^l' peco-cdr
     bindkey '^xk' peco-kill-process
     bindkey '^v' peco-find
