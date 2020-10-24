@@ -1,5 +1,5 @@
 # my_zshrc
-# Version 59
+# Version 60
 #**************************************
 #
 # PATH
@@ -155,7 +155,7 @@ case ${OSTYPE} in
         # local MY_PROMPT="${HISTORY_NAME}${HOSTCOLOR}${TTY_COLOR}${PROMPT_LANG}${DIR_COLOR}${COLOR_RESET}"
         ;;
     *)
-        local MY_PROMPT="%F{050}[%h %n@%m %~ ]${COLOR_RESET}"
+        local MY_PROMPT="%F{050}[%h %F{170}%n %m %F{050}%~]${COLOR_RESET}"
         ;;
 esac
 
