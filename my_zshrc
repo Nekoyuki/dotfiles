@@ -155,7 +155,7 @@ case ${OSTYPE} in
         # local MY_PROMPT="${HISTORY_NAME}${HOSTCOLOR}${TTY_COLOR}${PROMPT_LANG}${DIR_COLOR}${COLOR_RESET}"
         ;;
     *)
-        local MY_PROMPT="%F{050}[%h %F{170}%n %m %F{050}%~]${COLOR_RESET}"
+        local MY_PROMPT="%F{050}[%h %F{177}%n %m %F{050}%~]${COLOR_RESET}"
         ;;
 esac
 

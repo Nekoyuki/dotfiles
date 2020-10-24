@@ -126,7 +126,7 @@ case ${OSTYPE} in
         MY_PROMPT="${HISTORY_NAME}${HOSTCOLOR}${DIR_COLOR}${COLOR_RESET}\n + "
         ;;
     *)
-        MY_PROMPT="\e[38;5;050m[\! \e[38;5;170m\u@\h \e[38;5;050m\W]\n + \e[0m"
+        MY_PROMPT="\e[38;5;050m[\! \e[38;5;208m\u@\h \e[38;5;050m\W]\n + \e[0m"
         ;;
 esac
 
