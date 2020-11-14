@@ -145,7 +145,7 @@ alias t='tail'
 alias p='pwd'
 alias y='yes'
 
-# alias ..='cd ..'
+alias ..='cd ..'
 alias cr='chrome'
 alias df='df -h'
 alias du='du -h'

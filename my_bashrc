@@ -1,5 +1,5 @@
 # my_bashrc
-# Version 17
+# Version 18
 #**************************************
 
 # PATH
@@ -63,12 +63,6 @@ export TERM=xterm-256color
 
 # prompt
 #**************************************
-# if [ -z "${BASHRC_GOOGLE_PATH}" ]; then
-#     export PS1="\[\033[1;34m\][\!:\u@:\W]>\[\033[0m\]"
-# else
-#     export PS1="\[\033[1;34m\][\!:\u@\h:\W]>\[\033[0m\]"
-# fi
-
 case ${LANG} in
     *.UTF-8)
         S_LEFT_BOLD=""
@@ -105,18 +99,6 @@ case ${HOSTNAME} in
         ;;
 esac
 
-# case ${LANG} in
-#     ja_JP.UTF-8)
-#         PROMPT_LANG="\e[48;5;245m\e[38;5;008m${S_RIGHT_BOLD} ${LANG} \e[48;5;008m\e[38;5;245m${S_RIGHT_BOLD}"
-#         ;;
-#     ja_JP.SJIS)
-#         PROMPT_LANG="\e[48;5;132m\e[38;5;008m${S_RIGHT_BOLD} ${LANG} \e[48;5;008m\e[38;5;132m${S_RIGHT_BOLD}"
-#         ;;
-#     en_US.UTF-8)
-#         PROMPT_LANG="\e[48;5;002m\e[38;5;008m${S_RIGHT_BOLD} ${LANG} \e[48;5;008m\e[38;5;002m${S_RIGHT_BOLD}"
-#         ;;
-# esac
-
  # TTY=`tty | sed -e "s:/dev/::"`
  # TTY_COLOR="\e[48;5;245m\e[38;5;008m${S_RIGHT_BOLD} ${TTY} \e[48;5;008m\e[38;5;245m${S_RIGHT_BOLD}"
  DIR_COLOR="\e[48;5;245m\e[38;5;008m${S_RIGHT_BOLD} \W \e[48;5;008m\e[38;5;245m${S_RIGHT_BOLD}"
@@ -136,6 +118,16 @@ PS1=$MY_PROMPT
 #**************************************
 export LS_COLORS='di=34:ln=36:so=32:pi=33:ex=32:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
 
+# enhancd
+#**************************************
+if [ -d "enhancd" ]; then
+    ENHANCD_HYPHEN_ARG="-ls"
+    ENHANCD_DOT_ARG="-up"
+    ENHANCD_DISABLE_HOME=1
+    source enhancd/init.sh
+    bind -x '"\C-l": cd -ls'
+fi
+
 # functions & aliases
 #**************************************
 . ~/dotfiles/my_aliases
@@ -147,18 +139,8 @@ export LS_COLORS='di=34:ln=36:so=32:pi=33:ex=32:bd=46;34:cd=43;34:su=41;30:sg=46
 #**************************************
 export HISTCONTROL=ignoredups
 
-# # Python
-# #**************************************
-# case ${OSTYPE} in
-#     linux*)
-#         ;;
-#     msys*)
-#         if [ -e "/c/Anaconda3/python" ]; then
-#             export PATH='/c/Anaconda3:/c/Anaconda3/Scripts:'$PATH
-#             # export PYTHONPATH='/c/Anaconda3/Lib/site-packages'
-#         fi
-#         ;;
-# esac
+# Python
+#**************************************
 
 # Go
 #**************************************
