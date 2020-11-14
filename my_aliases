@@ -146,6 +146,7 @@ alias p='pwd'
 alias y='yes'
 
 alias ..='cd ..'
+alias cl='cd -ls'
 alias cr='chrome'
 alias df='df -h'
 alias du='du -h'
@@ -168,4 +169,5 @@ alias csvg='csvgrep'
 alias ga='git add .'
 alias gc='git commit -m'
 alias gp='git push'
+alias gs='git stash'
 
