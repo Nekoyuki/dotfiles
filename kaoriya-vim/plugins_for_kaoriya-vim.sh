@@ -19,6 +19,7 @@ davidhalter/jedi-vim
 pangloss/vim-javascript
 nachumk/systemverilog.vim
 previm/previm
+mechatroner/rainbow_csv
 )
 
 for i in "${LIST[@]}"; do

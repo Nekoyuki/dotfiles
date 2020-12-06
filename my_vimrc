@@ -1,5 +1,5 @@
 " my_vimrc
-" Ver.36
+" Ver.37
 " ----------------------------------------------
 
 " OSTYPE
@@ -157,6 +157,7 @@ NeoBundleLazy 'scrooloose/nerdtree', {'autoload': {'commands':['NERDTree']}}
 " NeoBundleLazy 'davidhalter/jedi-vim', {'autoload': {'filetypes':['python']}}
 " NeoBundleLazy 'pangloss/vim-javascript', {'autoload': {'filetypes':['javascript']}}
 " NeoBundleLazy 'nachumk/systemverilog.vim', {'autoload': {'filetypes':['verilog']}}
+NeoBundle 'mechatroner/rainbow_csv'
 
 call neobundle#end()
 
