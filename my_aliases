@@ -1,5 +1,5 @@
 # my_aliases
-# Version 10
+# Version 11
 #**************************************
 #
 # functions
@@ -133,7 +133,8 @@ alias vi='vim'
 alias ls='ls --color=tty --show-control-chars -F'
 alias la='ls -a --color=auto'
 alias ll='ls -al --color=auto'
-alias lt='ls -alt --color|less -NR'
+#alias lt='ls -alt --color|less -NR'
+alias lt='ls -alt --color|more'
 
 alias c='clear'
 alias d='diff'
