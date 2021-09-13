@@ -1,5 +1,5 @@
 # my_aliases
-# Version 12
+# Version 15
 #**************************************
 #
 # functions
@@ -54,6 +54,8 @@ function ea()
                 MY_ANACONDA="/c/Users/Nekoyuki/Anaconda3"
             elif [ -d "/c/Users/numeda/Anaconda3" ]; then
                 MY_ANACONDA="/c/Users/numeda/Anaconda3"
+            elif [ -d "/c/ProgramData/Anaconda3" ]; then
+                MY_ANACONDA="/c/ProgramData/Anaconda3"
             else
                 echo "No Anaconda3 found"
             fi
