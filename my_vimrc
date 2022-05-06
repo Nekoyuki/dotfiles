@@ -1,5 +1,5 @@
 " my_vimrc
-" Ver.37
+" Ver.38
 " ----------------------------------------------
 
 " OSTYPE
@@ -292,4 +292,5 @@ vmap <C-v> <Plug>(expand_region_shrink)
 
 " previm
 " ----------------------------------------------
-let g:previm_open_cmd = '"/c/Program Files (x86)/Google/Chrome/Application/chrome.exe"'
+" let g:previm_open_cmd = '"/c/Program Files (x86)/Google/Chrome/Application/chrome.exe"'
+let g:previm_open_cmd = '"/c/Program Files/Google/Chrome/Application/chrome.exe"'
